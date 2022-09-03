@@ -1,5 +1,7 @@
 import React from "react";
 import Logo from "../assets/img/favicon/logo.png";
+import Kakao from '../assets/img/icons/brands/large_wide.png';
+import {KAKAO_AUTH_URL} from "../OAuth";
 
 function Login () {
     return (
@@ -20,7 +22,14 @@ function Login () {
                     <h4 className="mb-4">Welcome to See옷! 👋</h4>
                     <p className="mb-4">Please sign-in to your account and start the adventure</p>
                         <div className="mb-3">
-                            <input className="btn d-grid w-100" type="image" name="button" src='../assets/img/icons/brands/large_wide.png'></input>
+                            <a href={KAKAO_AUTH_URL}>
+                                <input
+                                    className="btn d-grid w-100"
+                                    type="image"
+                                    name="button"
+                                    src={Kakao}>
+                                </input>
+                             </a>
                         </div>
                     </div>
                 </div>
