@@ -4,6 +4,7 @@ import { FiUser } from 'react-icons/fi';
 import { BiCloset } from 'react-icons/bi';
 import Logo from "../assets/img/favicon/logo.png";
 import Profile from "../assets/img/avatars/1.png";
+import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
@@ -112,7 +113,7 @@ function SideBar() {
             </li>
           </ul>
         </li>
-        <Button text="Sign in" id="gobottom"/>
+          <Button text="Sign in" id="gobottom" path={"/login"}/>
       </ul>
     </aside>
   );
