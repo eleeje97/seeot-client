@@ -2,6 +2,7 @@ import React from "react";
 import Main from "./page/Main";
 import Footer from "./components/Footer";
 import Login from "./page/Login";
+import KakaoCallback from "./components/KakaoCallback";
 // import NotFound from ".page/NotFound"
 import {
     BrowserRouter as Router,
@@ -18,6 +19,7 @@ const AppRouter =() => {
                                             <Footer />
                                           </>}></Route>
                 <Route path="/login" element={<Login />}></Route>
+                <Route path="/login/kakao/callback" element={<KakaoCallback />}></Route>
                 {/* <Route path="*" element={<NotFound />}></Route> */}
             </Routes>
         </Router>
