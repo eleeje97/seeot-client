@@ -1,6 +1,9 @@
 import Button from "./common/Button";
 import React from "react";
-// import { BiCloset } from 'react-icons/fa';
+import { FiUser } from 'react-icons/fi';
+import { BiCloset } from 'react-icons/bi';
+import Logo from "../assets/img/favicon/logo.png";
+import Profile from "../assets/img/avatars/1.png";
 
 function SideBar() {
   return (
@@ -9,9 +12,9 @@ function SideBar() {
       className="layout-menu menu-vertical menu bg-menu-theme"
     >
       <div className="app-brand demo">
-        <a href="index.html" className="app-brand-link">
+        <a href="#" className="app-brand-link">
           <img
-            src="../assets/img/favicon/logo.png"
+            src={Logo}
             viewBox="0 0 50 42"
             width="50"
             alt=""
@@ -32,17 +35,28 @@ function SideBar() {
       <div className="menu-inner-shadow"></div>
 
       <ul className="menu-inner py-1">
+        <div class="col-md-12 mb-4">
+          <img
+            src={Profile}
+            alt="user-avatar"
+            class="d-block rounded"
+            height="150"
+            width="150"
+            id="uploadedAvatar"
+          />
+        </div>
+
         <li className="menu-item">
           <a href="layouts-blank.html" className="menu-link">
-            {/* <BiCloset /> */}
-            <div data-i18n="Blank">Fitting Room</div>
+            <BiCloset />
+            <div data-i18n="Blank">&nbsp; Fitting Room</div>
           </a>
         </li>
 
         <li className="menu-item">
           <a href="#" className="menu-link">
-            <i className="menu-icon tf-icons bx bx-user"></i>
-            <div data-i18n="Analytics">Mypage</div>
+            <FiUser />
+            <div data-i18n="Analytics">&nbsp; Mypage</div>
           </a>
         </li>
         <li className="menu-item">
@@ -98,7 +112,7 @@ function SideBar() {
             </li>
           </ul>
         </li>
-        <Button text="Sign in" />
+        <Button text="Sign in" id="gobottom"/>
       </ul>
     </aside>
   );

@@ -32,9 +32,11 @@ function Main() {
             </nav>
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
-                <RecommendationItem />
-                <RecommendationItem />
-                <RecommendationItem />
+                <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                  <RecommendationItem />
+                  <RecommendationItem />
+                  <RecommendationItem />
+                </div>
               </div>
               <div className="content-backdrop fade"></div>
             </div>
