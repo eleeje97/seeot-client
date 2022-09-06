@@ -13,7 +13,7 @@ function SideBar() {
       className="layout-menu menu-vertical menu bg-menu-theme"
     >
       <div className="app-brand demo">
-        <a href="#" className="app-brand-link">
+        <a href={"/"} className="app-brand-link">
           <img
             src={Logo}
             viewBox="0 0 50 42"
@@ -25,18 +25,18 @@ function SideBar() {
           </span>
         </a>
 
-        <a
+        {/* <a
           href="#"
           className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
         >
           <i className="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
+        </a> 뭔지 모르겠음 */}
       </div>
 
       <div className="menu-inner-shadow"></div>
 
       <ul className="menu-inner py-1">
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 mb-profile">
           <img
             src={Profile}
             alt="user-avatar"
@@ -48,18 +48,20 @@ function SideBar() {
         </div>
 
         <li className="menu-item">
-          <a href="layouts-blank.html" className="menu-link">
+          <a href="#" className="menu-link"> {/*피팅룸 페이지로 이동 */}
             <BiCloset />
             <div data-i18n="Blank">&nbsp; Fitting Room</div>
           </a>
         </li>
 
         <li className="menu-item">
-          <a href="#" className="menu-link">
+          <a href="#" className="menu-link"> {/*마이 페이지로 이동 */}
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </a>
         </li>
+
+        {/* 곧 지울 것들 */}
         <li className="menu-item">
           <a href="#" className="menu-link menu-toggle">
             <i className="menu-icon tf-icons bx bx-lock-open-alt"></i>
@@ -113,6 +115,8 @@ function SideBar() {
             </li>
           </ul>
         </li>
+        {/* /곧 지울 것들 */}
+
           <Button text="Sign in" id="gobottom" path={"/login"}/>
       </ul>
     </aside>

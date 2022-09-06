@@ -1,6 +1,7 @@
 import React from "react";
 import RecommendationItem from "../components/common/RecommendationItem";
 import SideBar from "../components/SideBar";
+import { HiOutlineMenu } from "react-icons/hi"
 
 function Main() {
   return (
@@ -16,8 +17,8 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" href="#">
-                  <i className="bx bx-menu bx-sm"></i>
+                <a className="nav-item nav-link px-0 me-xl-4" href={<SideBar />}> {/* js:void(0) */}
+                  <HiOutlineMenu />
                 </a>
               </div>
               <h5 className="navbar-nav align-items-center">

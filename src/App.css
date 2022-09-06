@@ -3933,6 +3933,7 @@ textarea.form-control-lg {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+  background-color: #fff;
 }
 
 .card-img,
@@ -9587,8 +9588,7 @@ button.list-group-item-gray.active {
 }
 
 .mb-4 {
-  /* margin-bottom: 1.5rem !important; */
-  padding: 0.5rem 3.2rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 .mb-5 {
@@ -9597,6 +9597,10 @@ button.list-group-item-gray.active {
 
 .mb-auto {
   margin-bottom: auto !important;
+}
+
+.mb-profile {
+  padding: 0.5rem 3.2rem !important;
 }
 
 .m-n1 {
