@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../assets/img/favicon/logo.png";
-import Kakao from '../assets/img/icons/brands/large_wide.png';
+import Logo from "../images/logo.png";
+import Kakao from '../images/large_wide.png';
 import {KAKAO_AUTH_URL} from "../OAuth";
 
 function Login () {

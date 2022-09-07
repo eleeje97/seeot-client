@@ -17,7 +17,7 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" href={<SideBar />}> {/* js:void(0) */}
+                <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"> {/* js:void(0) */}
                   <HiOutlineMenu />
                 </a>
               </div>
@@ -53,8 +53,10 @@ function Main() {
       <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
       <script src="../assets/vendor/js/menu.js"></script>
+      <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
       <script src="../assets/js/main.js"></script>
 
+      <script src="../assets/js/dashboards-analytics.js"></script>
       <script async defer src="https://buttons.github.io/buttons.js"></script>
     </div>
   );

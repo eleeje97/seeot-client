@@ -2,8 +2,9 @@ import Button from "./common/Button";
 import React from "react";
 import { FiUser } from 'react-icons/fi';
 import { BiCloset } from 'react-icons/bi';
-import Logo from "../assets/img/favicon/logo.png";
+import Logo from "../images/logo.png";
 import Profile from "../assets/img/avatars/1.png";
+import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
 function SideBar() {
@@ -25,12 +26,12 @@ function SideBar() {
           </span>
         </a>
 
-        {/* <a
-          href="#"
+        <a
+          href="javascript:void(0);"
           className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
         >
-          <i className="bx bx-chevron-left bx-sm align-middle"></i>
-        </a> 뭔지 모르겠음 */}
+          <HiChevronLeft />
+        </a>
       </div>
 
       <div className="menu-inner-shadow"></div>
