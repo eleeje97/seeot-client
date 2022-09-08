@@ -6,6 +6,9 @@ const api = axios.create({
 
 export const seeotApi = {
     kakaoLogin: (code) =>
-        api.get(`accounts/kakao/login?code=${code}`, {})
+        api.get(`accounts/kakao/login?code=${code}`, {}),
+
+    userInfo: (userId) =>
+        api.get(`accounts/userinfo?user_id=${userId}`, {})
 
 }
