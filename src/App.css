@@ -7440,6 +7440,13 @@ button:focus {
   flex-basis: column;
 }
 
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .pagination-lg .page-link,
 .pagination-lg > li > a:not(.page-link) {
   min-width: calc(
@@ -9601,6 +9608,9 @@ button.list-group-item-gray.active {
 
 .mb-profile {
   padding: 0.5rem 3.2rem !important;
+}
+.mb-fit {
+  padding: 0.5rem 1.5rem !important;
 }
 
 .m-n1 {
