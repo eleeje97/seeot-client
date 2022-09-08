@@ -4,6 +4,8 @@ import SideBar from "../components/SideBar";
 import { HiOutlineMenu } from "react-icons/hi"
 
 function Main() {
+  console.log('여기는 메인 로컬스토리지:'+localStorage.getItem('userId'));
+
   return (
     <div>
       <div className="layout-wrapper layout-content-navbar">
