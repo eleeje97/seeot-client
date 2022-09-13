@@ -33,8 +33,8 @@ function RecommendationItem() {
               margin: "0 10px",
             }}
           >
-            <Button text="내 옷장에 담기" />
-            <Button text="피팅룸으로 가기" />
+            <Button text="내 옷장에 담기" path={"/mypage"}/>
+            <Button text="피팅룸으로 가기" path={"/fittingroom"}/>
           </div>
         {/* </div> */}
       </div>
