@@ -1,8 +1,8 @@
 import React from "react";
 import Logo from "../images/logo.png";
-import First from "../assets/img/elements/13.jpg";
-import Second from "../assets/img/elements/2.jpg";
-import Third from "../assets/img/elements/18.jpg";
+import First from "../images/sample_1.jpg";
+import Second from "../images/sample_2.jpg";
+import Third from "../images/sample_3.jpg";
 // import { Button } from "bootstrap";
 import Button from "../components/common/Button";
 import { BiSave } from 'react-icons/bi';
@@ -32,6 +32,7 @@ function FittingRoom() {
             </div>
             {/* /Logo */}
             <div className="layout-container">
+                {/* Fitting */}
                 <div className="container-p-y card-body">
                     <img className="d-block" src={Second} alt="" viewBox="0 0 70 42" width="300" />
                     <div 
@@ -43,10 +44,11 @@ function FittingRoom() {
                             margin: "0 10px",
                           }}
                     >
-                        <Button text="Fitting"/>
-                        <BiSave />
+                        <Button text="Fitting" /><BiSave />
                     </div>
                 </div>
+                {/* /Fitting */}
+                {/* Choose */}
                 <div className="container-xxl flex-grow-1 container-p-y ">
                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                         <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
@@ -102,6 +104,7 @@ function FittingRoom() {
                         </div>
                     </div>
                 </div>
+                {/* /Choose */}
             </div>
         </>
     )
