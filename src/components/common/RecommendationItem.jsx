@@ -24,16 +24,16 @@ function RecommendationItem() {
             width="420px"
             height="500px"
           /> */}
-          <div
-            style={{
-              height: "100px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              margin: "0 10px",
-            }}
+          <div className="btn demo-inline-spacing"
+            // style={{
+            //   height: "100px",
+            //   display: "flex",
+            //   alignItems: "center",
+            //   justifyContent: "space-between",
+            //   margin: "0 10px",
+            // }}
           >
-            <Button text="내 옷장에 담기" path={"/mypage"}/>
+            {/* <Button text="내 옷장에 담기" path={"/mypage"}/> */}
             <Button text="피팅룸으로 가기" path={"/fittingroom"}/>
           </div>
         {/* </div> */}

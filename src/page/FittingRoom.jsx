@@ -35,16 +35,17 @@ function FittingRoom() {
                 {/* Fitting */}
                 <div className="container-p-y card-body">
                     <img className="d-block" src={Second} alt="" viewBox="0 0 70 42" width="300" />
-                    <div 
-                        style={{
-                            height: "100px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            margin: "0 10px",
-                          }}
+                    <div className="demo-vertical-spacing btn"
+                        // style={{
+                        //     height: "100px",
+                        //     display: "flex",
+                        //     alignItems: "center",
+                        //     justifyContent: "space-between",
+                        //     margin: "0 10px",
+                        //   }}
                     >
-                        <Button text="Fitting" /><BiSave />
+                        <Button text="Fitting" />
+                        <BiSave />
                     </div>
                 </div>
                 {/* /Fitting */}
