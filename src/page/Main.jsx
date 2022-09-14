@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import RecommendationItem from "../components/common/RecommendationItem";
 import SideBar from "../components/SideBar";
-import { HiOutlineMenu } from "react-icons/hi"
+import { HiOutlineMenu } from "react-icons/hi";
+import { seeotApi } from "../Api";
 
 function Main() {
-  console.log('여기는 메인 로컬스토리지:'+localStorage.getItem('userId'));
+  const [user, setUser] = useState({});
 
+
+  const getUserInfo = useCallback (
+    async(userId) => {
+      setUser({});
+      await seeotApi
+        .userInfo(userId)
+        .then((res) => {
+          setUser(res.data.user);
+        })
+        .catch(function (){
+          console.log('API 통신 오류');
+        }, []);
+    },
+    [user]
+  );
+
+
+  useEffect(() =>{ 
+    setUser({});
+    let userId = localStorage.getItem('userId');
+    getUserInfo(userId);
+   }, []);
+   
   return (
     <div>
       <div className="layout-wrapper layout-content-navbar">
         <div className="layout-container">
-          <SideBar />
+          <SideBar user={user} />
 
           {/* 메인 컨텐츠 */}
           <div className="layout-page">

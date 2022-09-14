@@ -7,7 +7,11 @@ import Profile from "../assets/img/avatars/1.png";
 import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
-function SideBar() {
+function SideBar(user) {
+  const nickname = user.user.nickname;
+  const profile = user.user.profile_image_url;
+  // console.log('여기는 사이드바 user: ' + nickname + ' ' + profile);
+
   return (
     <aside
       id="layout-menu"
@@ -39,7 +43,7 @@ function SideBar() {
       <ul className="menu-inner py-1">
         <div class="col-md-12 mb-profile">
           <img
-            src={Profile}
+            src={profile}
             alt="user-avatar"
             class="d-block rounded"
             height="150"
@@ -47,16 +51,19 @@ function SideBar() {
             id="uploadedAvatar"
           />
         </div>
+        <li className="menu-item">
+          <a className="menu-link"><b>{nickname}</b></a>
+        </li>
 
         <li className="menu-item">
-          <a href="#" className="menu-link"> {/*피팅룸 페이지로 이동 */}
+          <a href={"/fittingroom"} className="menu-link">
             <BiCloset />
             <div data-i18n="Blank">&nbsp; Fitting Room</div>
           </a>
         </li>
 
         <li className="menu-item">
-          <a href="#" className="menu-link"> {/*마이 페이지로 이동 */}
+          <a href={"mypage"} className="menu-link">
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </a>
