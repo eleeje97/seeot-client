@@ -6,8 +6,6 @@ import { seeotApi } from "../Api";
 
 function Main() {
   const [user, setUser] = useState({});
-
-
   const getUserInfo = useCallback (
     async(userId) => {
       setUser({});
@@ -27,9 +25,15 @@ function Main() {
   useEffect(() =>{ 
     setUser({});
     let userId = localStorage.getItem('userId');
-    getUserInfo(userId);
+    if(userId) {
+      getUserInfo(userId);
+    } else {
+      setUser({})
+    }
+    
    }, []);
-   
+
+
   return (
     <div>
       <div className="layout-wrapper layout-content-navbar">

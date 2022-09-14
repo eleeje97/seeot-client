@@ -1,13 +1,18 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Button({ text, path, id}) {
+function Button({ text, path, id, userId}) {
   return (
     <li className="menu-item" id={id}>
-      <a href={path} className="menu-link">
+      <Link to={{pathname: path}}
+            state= {{
+              userId: userId
+            }}
+            className="menu-link">
         <button className="btn btn-primary d-grid w-100" type="submit">
           {text}
         </button>
-      </a>
+      </Link>
     </li>
   );
 }

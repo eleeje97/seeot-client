@@ -1,5 +1,5 @@
 import Button from "./common/Button";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiUser } from 'react-icons/fi';
 import { BiCloset } from 'react-icons/bi';
 import Logo from "../images/logo.png";
@@ -7,10 +7,21 @@ import Profile from "../assets/img/avatars/1.png";
 import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
-function SideBar(user) {
-  const nickname = user.user.nickname;
-  const profile = user.user.profile_image_url;
-  // console.log('여기는 사이드바 user: ' + nickname + ' ' + profile);
+function SideBar(userInfo) {
+  const [nickname, setNickname] = useState('James');
+  const [profile, setProfile] = useState(Profile);
+  const [loginText, setLoginText] = useState('Sign In');
+  const [loginPath, setLoginPath] = useState('/login');
+  const userId = userInfo.user.id;
+
+  useEffect(() => {
+    if (userInfo.user.nickname) {
+      setNickname(userInfo.user.nickname);
+      setProfile(userInfo.user.profile_image_url);
+      setLoginText('Sign Out');
+      setLoginPath('/logout');
+    }
+  });
 
   return (
     <aside
@@ -125,7 +136,7 @@ function SideBar(user) {
         </li>
         {/* /곧 지울 것들 */}
 
-          <Button text="Sign in" id="gobottom" path={"/login"}/>
+          <Button text={loginText} id="gobottom" path={loginPath} userId={userId}/>
       </ul>
     </aside>
   );
