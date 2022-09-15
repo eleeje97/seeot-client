@@ -22,7 +22,7 @@ function Login () {
                         <h4 className="mb-4 text-center">Welcome to See옷! 👋</h4>
                         <p className="mb-4 text-center">Please sign-in to your account and start the adventure</p>
                             <div className="mb-3">
-                                <a href={KAKAO_AUTH_URL}>
+                                <a href={KAKAO_AUTH_URL.Login}>
                                     <input
                                         className="btn d-grid w-100"
                                         type="image"

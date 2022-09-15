@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { seeotApi } from "../Api";
 import { useNavigate } from "react-router-dom";
 
 const KakaoCallback = () => {
 
-    const href = window.location.href;
     let params = new URL(document.URL).searchParams;
     let code = params.get("code");
     const navigate = useNavigate();
@@ -14,12 +13,12 @@ const KakaoCallback = () => {
             seeotApi.kakaoLogin(code).then((res) => {
                 let userId = res.data.user_id;
                 localStorage.setItem('userId', userId);
+                navigate("/");
             });
-
+            
         } catch(error) {
             console.error(error);
         }
-        navigate("/");
       }, []);
 }
 
