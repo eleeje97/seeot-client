@@ -3929,6 +3929,11 @@ textarea.form-control-lg {
   border-radius: 0.5rem;
 }
 
+.card-img-size {
+  width: 375px;
+  height: 550px;
+}
+
 .card-img,
 .card-img-top,
 .card-img-bottom {

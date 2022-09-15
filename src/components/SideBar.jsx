@@ -74,10 +74,10 @@ function SideBar(userInfo) {
         </li>
 
         <li className="menu-item">
-          <a href={"mypage"} className="menu-link">
+          <Link to={{pathname: "mypage"}} state={{userInfo: userInfo}} className="menu-link">
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
-          </a>
+          </Link>
         </li>
 
         {/* 곧 지울 것들 */}
