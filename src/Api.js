@@ -12,6 +12,10 @@ export const seeotApi = {
         api.get(`accounts/kakao/logout?user_id=${userId}`, {}),
 
     userInfo: (userId) =>
-        api.get(`accounts/userinfo?user_id=${userId}`, {})
+        api.get(`accounts/userinfo?user_id=${userId}`, {}),
+
+    updateProfile: (data) => 
+        api.post(`accounts/update/profile`, data, {})
+        
 
 }
