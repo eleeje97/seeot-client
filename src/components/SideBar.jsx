@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import { FiUser } from 'react-icons/fi';
 import { BiCloset } from 'react-icons/bi';
 import Logo from "../images/logo.png";
-import Profile from "../assets/img/avatars/1.png";
+import Profile from "../images/profile.jpg";
 import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
 function SideBar(userInfo) {
-  const [nickname, setNickname] = useState('James');
+  const [nickname, setNickname] = useState('');
   const [profile, setProfile] = useState(Profile);
   const [loginText, setLoginText] = useState('Sign In');
   const [loginPath, setLoginPath] = useState('/login');
