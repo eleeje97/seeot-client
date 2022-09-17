@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../images/logo.png";
+import Logo from "../components/common/LogoSeeot"
 import First from "../images/sample_1.jpg";
 import Second from "../images/sample_2.jpg";
 import Third from "../images/sample_3.jpg";
@@ -8,41 +8,22 @@ import Button from "../components/common/Button";
 import { BiSave } from 'react-icons/bi';
 
 function FittingRoom() {
-    
+
     return (
         <>
-            {/* Logo */}
-            <div
-                // id="layout-menu"
-                className="menu-vertical menu bg-menu-theme mb-fit"
-            >
-                <div className="app-brand demo">
-                    <a href={"/"} className="app-brand-link">
-                        <img
-                            src={Logo}
-                            viewBox="0 0 50 42"
-                            width="50"
-                            alt=""
-                        />
-                        <span className="app-brand-text demo menu-text fw-bolder ms-2">
-                            See옷
-                        </span>
-                    </a>
-                </div>
-            </div>
-            {/* /Logo */}
+            <Logo />
             <div className="layout-container">
                 {/* Fitting */}
                 <div className="container-p-y card-body">
                     <img className="d-block" src={Second} alt="" viewBox="0 0 70 42" width="300" />
                     <div className="demo-vertical-spacing btn"
-                        // style={{
-                        //     height: "100px",
-                        //     display: "flex",
-                        //     alignItems: "center",
-                        //     justifyContent: "space-between",
-                        //     margin: "0 10px",
-                        //   }}
+                    // style={{
+                    //     height: "100px",
+                    //     display: "flex",
+                    //     alignItems: "center",
+                    //     justifyContent: "space-between",
+                    //     margin: "0 10px",
+                    //   }}
                     >
                         <Button text="Fitting" />
                         <BiSave />
@@ -81,7 +62,7 @@ function FittingRoom() {
                                     </div>
                                 </div>
                             </div>
-                            <a 
+                            <a
                                 className="carousel-control-prev"
                                 href="#carouselExample"
                                 role="button"

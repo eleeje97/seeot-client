@@ -12,39 +12,23 @@ function Footer() {
             target="_blank"
             className="footer-link fw-bolder"
           >
-            ThemeSelection
+            Passionable
           </a>
         </div>
         <div>
           <a
-            href="https://themeselection.com/license/"
+            href="https://www.notion.so/68a378cce1f94879b63014e7ef60fe8f"
             className="footer-link me-4"
             target="_blank"
           >
-            License
+            Notion
           </a>
           <a
-            href="https://themeselection.com/"
+            href="https://github.com/eleeje97/seeot-client"
             target="_blank"
             className="footer-link me-4"
           >
-            More Themes
-          </a>
-
-          <a
-            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-            target="_blank"
-            className="footer-link me-4"
-          >
-            Documentation
-          </a>
-
-          <a
-            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-            target="_blank"
-            className="footer-link me-4"
-          >
-            Support
+            Github
           </a>
         </div>
       </div>
