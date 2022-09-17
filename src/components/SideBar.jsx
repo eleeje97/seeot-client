@@ -79,63 +79,6 @@ function SideBar(userInfo) {
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </Link>
         </li>
-
-        {/* 곧 지울 것들 */}
-        <li className="menu-item">
-          <a href="#" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-lock-open-alt"></i>
-            <div data-i18n="Authentications">Authentications</div>
-          </a>
-          <ul className="menu-sub">
-            <li className="menu-item">
-              <a
-                href="auth-login-basic.html"
-                className="menu-link"
-                target="_blank"
-              >
-                <div data-i18n="Basic">Login</div>
-              </a>
-            </li>
-            <li className="menu-item">
-              <a
-                href="auth-register-basic.html"
-                className="menu-link"
-                target="_blank"
-              >
-                <div data-i18n="Basic">Register</div>
-              </a>
-            </li>
-            <li className="menu-item">
-              <a
-                href="auth-forgot-password-basic.html"
-                className="menu-link"
-                target="_blank"
-              >
-                <div data-i18n="Basic">Forgot Password</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item">
-          <a href="#" className="menu-link menu-toggle">
-            <i className="menu-icon tf-icons bx bx-cube-alt"></i>
-            <div data-i18n="Misc">Misc</div>
-          </a>
-          <ul className="menu-sub">
-            <li className="menu-item">
-              <a href="pages-misc-error.html" className="menu-link">
-                <div data-i18n="Error">Error</div>
-              </a>
-            </li>
-            <li className="menu-item">
-              <a href="pages-misc-under-maintenance.html" className="menu-link">
-                <div data-i18n="Under Maintenance">Under Maintenance</div>
-              </a>
-            </li>
-          </ul>
-        </li>
-        {/* /곧 지울 것들 */}
-
           <Button text={loginText} id="gobottom" path={loginPath} userId={userId}/>
       </ul>
     </aside>

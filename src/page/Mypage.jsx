@@ -1,15 +1,13 @@
-// import { Button } from "bootstrap";
 import React, { useCallback, useState, useEffect } from "react";
 import Logo from "../images/logo.png";
 import Upload from "../images/mypage.png";
-import Button from "../components/common/Button";
 import { useLocation } from "react-router-dom";
 import { seeotApi } from "../Api";
+import { useCookies } from "react-cookie";
 
 function Mypage() {
 
     const location = useLocation();
-    // console.log("location" + JSON.stringify(location.state?.userInfo.user));
     const user = location.state?.userInfo.user;
     const [nickname, setNickname] = useState('');
     // const [gender, setGender] = useState('');
@@ -22,13 +20,15 @@ function Mypage() {
         if (user.full_body_img_path) {
             setFullbody('http://210.106.99.80:5050/' + user.full_body_img_path);
         }
-        // console.log(fullbody);
-    });
+        // deleteProfile();
+        // console.log('useEffect '+fullbody);
+
+    }, []);
 
     const encodeFileToBase64 = (fileBlob) => {
-        console.log(fileBlob);
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
+        // console.log('encoder '+ fullbody);
         return new Promise((resolve) => {
             reader.onload = () => {
                 setFullbody(reader.result);
@@ -38,10 +38,7 @@ function Mypage() {
     };
 
     const saveProfile = () => {
-        console.log(user.id);
-        // console.log(fullbody);
         const genderValue = document.getElementById('gender').value;
-
         updateProfile(user.id, genderValue);
     };
 
@@ -54,7 +51,9 @@ function Mypage() {
             await seeotApi
                 .updateProfile(formData)
                 .then((res) => {
-                    console.log(res);
+                    if(res.status === 200) {
+                        alert("Profile Update Success!");
+                    }
                 })
                 .catch(function (e) {
                     console.log(e);
@@ -62,19 +61,10 @@ function Mypage() {
         },
         []
     );
-
-
-    //   useEffect(() =>{ 
-    //     setUser({});
-    //     let userId = localStorage.getItem('userId');
-    //     if(userId) {
-    //       getUserInfo(userId);
-    //     } else {
-    //       setUser({})
-    //     }
-
-    //    }, []);
-
+    // const removeCookie = useCookies();
+    // const deleteProfile = () => {
+    //     removeCookie('saveProfile');
+    // };
 
     return (
         <>
@@ -135,6 +125,7 @@ function Mypage() {
                     </div>
                     <div className="text-end">
                         <button type="submit" className="btn btn-primary me-2 " onClick={saveProfile}>Save changes</button>
+                        {/* {deleteProfile.saveProfile} */}
                     </div>
                 </div>
             </div>
