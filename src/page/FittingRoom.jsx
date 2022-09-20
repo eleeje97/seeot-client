@@ -1,23 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
 import First from "../images/sample_1.jpg";
 import Second from "../images/sample_2.jpg";
 import Third from "../images/sample_3.jpg";
-// import { Button } from "bootstrap";
 import Button from "../components/common/Button";
 import { BiSave } from 'react-icons/bi';
 import { GiArmoredPants } from 'react-icons/gi';
 import { FaTshirt } from 'react-icons/fa';
 import Clothes from "../components/common/Clothes";
+import { seeotApi } from "../Api";
 
 function FittingRoom() {
 
     const location = useLocation();
     const user = location.state?.userInfo.user;
     const [fullbody, setFullbody] = useState('');
-    console.log("profile" + user.full_body_img_path);
     const navigate = useNavigate();
+
+    const id = user.id;
+    const clothesList = useCallback(
+        async (userId) => {
+            await seeotApi
+                .clothesList(userId)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log('userclothes '+ JSON.stringify(res.data));
+                    }
+                })
+                .catch(function (e) {
+                    console.log(e);
+                }, []);
+        },
+        []
+    );
+
+    console.log("userinfo ", user.id);
+
     if (user.full_body_img_path === null) {
         alert("Please Save Your Profile");
         // window.location.replace()
@@ -28,7 +47,9 @@ function FittingRoom() {
         if (user.full_body_img_path) {
             setFullbody('http://210.106.99.80:5050/' + user.full_body_img_path);
         }
+        clothesList(id);
     }, []);
+
 
     return (
         <>

@@ -18,6 +18,9 @@ export const seeotApi = {
         api.post(`accounts/update/profile`, data, {}),
     
     recommendation: (userId) =>
-        api.get(`recommendation?user_id=${userId}`, {})
+        api.get(`recommendation?user_id=${userId}`, {}),
+
+    clothesList: (userId) =>
+        api.get(`clothes/list?user_id=${userId}`, {}),
 
 }
