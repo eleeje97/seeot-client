@@ -3936,6 +3936,11 @@ textarea.form-control-lg {
   object-fit: fill;
 }
 
+.reco-img-size {
+  height: 480px;
+  object-fit: fill;
+}
+
 .card-img,
 .card-img-top,
 .card-img-bottom {
