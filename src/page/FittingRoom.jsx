@@ -47,7 +47,7 @@ function FittingRoom() {
                     {/* /Fitting */}
 
                     {/* Choose */}
-                    <div class="nav-align-top mb-4">
+                    <div class="nav-align-top mb-4 container-xxl">
                         <ul class="nav nav-tabs nav-pills nav-fill">
                             <li class="nav-item">
                                 <button
@@ -81,8 +81,8 @@ function FittingRoom() {
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         <Clothes img_src={First} />
-                                        {/* <Clothes img_src={Second} /> */}
-                                        {/* <Clothes img_src={Third} /> */}
+                                        <Clothes img_src={Second} />
+                                        <Clothes img_src={Third} />
                                     </div>
                                 </div>
 
