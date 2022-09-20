@@ -16,6 +16,8 @@ function FittingRoom() {
     const location = useLocation();
     const user = location.state?.userInfo.user;
     const [fullbody, setFullbody] = useState('');
+    const [myClothesState, setMyClothesState] = useState(true);
+    const [seeotClothesState, setSeeotClothesState] = useState(false);
     const navigate = useNavigate();
 
     const id = user.id;
@@ -51,9 +53,19 @@ function FittingRoom() {
     }, []);
 
 
+    const tabClick = (tab) => {
+        if (tab === 'myclothes') {
+            setMyClothesState(true);
+            setSeeotClothesState(false);
+
+        } else {
+            setMyClothesState(false);
+            setSeeotClothesState(true);
+        }
+    }
+
     return (
         <>
-
             <Logo />
             <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="layout-container">
@@ -73,12 +85,13 @@ function FittingRoom() {
                             <li class="nav-item">
                                 <button
                                     type="button"
-                                    class="nav-link active"
+                                    className={myClothesState ? "nav-link active" : "nav-link"}
                                     role="tab"
                                     data-bs-toggle="tab"
                                     data-bs-target="#navs-pills-justified-home"
                                     aria-controls="navs-pills-justified-home"
                                     aria-selected="true"
+                                    onClick={() => tabClick('myclothes')}
                                 >
                                     <FaTshirt /> My Clothes
                                 </button>
@@ -86,19 +99,20 @@ function FittingRoom() {
                             <li class="nav-item">
                                 <button
                                     type="button"
-                                    class="nav-link"
+                                    className={seeotClothesState ? "nav-link active" : "nav-link"}
                                     role="tab"
                                     data-bs-toggle="tab"
                                     data-bs-target="#navs-pills-justified-profile"
                                     aria-controls="navs-pills-justified-profile"
                                     aria-selected="false"
+                                    onClick={() => tabClick('seeot')}
                                 >
                                     <GiArmoredPants /> Seeot Clothes
                                 </button>
                             </li>
                         </ul>
                         <div className="tab-content">
-                            <div className="tab-pane fade show active d-flex" id="navs-pills-justified-home" role="tabpanel">
+                            <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         <Clothes img_src={First} />
@@ -109,8 +123,12 @@ function FittingRoom() {
 
 
                             </div>
-                            <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
-                                <img className="d-block w-100" src={Third} alt="First slide" />
+                            <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
+                                <div className="container-xxl flex-grow-1 container-p-y">
+                                    <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                                        <Clothes img_src={Third} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
