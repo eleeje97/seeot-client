@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
-import First from "../images/sample_1.jpg";
 import Second from "../images/sample_2.jpg";
 import Third from "../images/sample_3.jpg";
 // import { Button } from "bootstrap";
@@ -9,79 +9,72 @@ import { BiSave } from 'react-icons/bi';
 
 function FittingRoom() {
 
+    const location = useLocation();
+    const user = location.state?.userInfo.user;
+    const [fullbody, setFullbody] = useState('');
+    console.log("profile"+user.full_body_img_path);
+    const navigate = useNavigate();
+    if (user.full_body_img_path === null) {
+        alert("Please Save Your Profile");
+        // window.location.replace()
+        // navigate("/mypage", {state: {userInfo: location.state?.userInfo}});
+    }
+
+    useEffect(() => {
+        if (user.full_body_img_path) {
+            setFullbody('http://210.106.99.80:5050/' + user.full_body_img_path);
+        }
+    }, []);
+
     return (
         <>
             <Logo />
             <div className="layout-container">
                 {/* Fitting */}
                 <div className="container-p-y card-body">
-                    <img className="d-block" src={Second} alt="" viewBox="0 0 70 42" width="300" />
-                    <div className="demo-vertical-spacing btn"
-                    // style={{
-                    //     height: "100px",
-                    //     display: "flex",
-                    //     alignItems: "center",
-                    //     justifyContent: "space-between",
-                    //     margin: "0 10px",
-                    //   }}
-                    >
+                    <img className="d-block" src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
+                    <div className="demo-vertical-spacing btn">
                         <Button text="Fitting" />
                         <BiSave />
                     </div>
                 </div>
                 {/* /Fitting */}
                 {/* Choose */}
-                <div className="container-xxl flex-grow-1 container-p-y ">
-                    <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                        <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+                <div class="nav-align-top mb-4">
+                    <ul class="nav nav-pills mb-3 nav-fill">
+                        <li class="nav-item">
+                            <button
+                                type="button"
+                                class="nav-link active"
+                                role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-justified-home"
+                                aria-controls="navs-pills-justified-home"
+                                aria-selected="true"
+                            >
+                                <i class="tf-icons bx bx-home"></i> Home
+                                <span class="badge rounded-pill badge-center h-px-20 w-px-20 bg-danger">3</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button
+                                type="button"
+                                class="nav-link"
+                                role="tab"
+                                data-bs-toggle="tab"
+                                data-bs-target="#navs-pills-justified-profile"
+                                aria-controls="navs-pills-justified-profile"
+                                aria-selected="false"
+                            >
+                                <i class="tf-icons bx bx-user"></i> Profile
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="navs-pills-justified-home" role="tabpanel">
                             <img className="d-block w-100" src={Second} alt="First slide" />
                         </div>
-                        <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
-                            <ol className="carousel-indicators">
-                                <li data-bs-target="#carouselExample" data-bs-slide-to="0" className="active"></li>
-                                <li data-bs-target="#carouselExample" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#carouselExample" data-bs-slide-to="2"></li>
-                            </ol>
-                            <div className="carousel-inner">
-                                <div className="carousel-item active">
-                                    <img className="d-block w-100" src={First} alt="First slide" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <h3>First slide</h3>
-                                    </div>
-                                </div>
-                                <div className="carousel-item">
-                                    <img className="d-block w-100" src={Second} alt="Second slide" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <h3>Second slide</h3>
-                                    </div>
-                                </div>
-                                <div className="carousel-item">
-                                    <img className="d-block w-100" src={Third} alt="Third slide" />
-                                    <div className="carousel-caption d-none d-md-block">
-                                        <h3>Third slide</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <a
-                                className="carousel-control-prev"
-                                href="#carouselExample"
-                                role="button"
-                                data-bs-slide="prev"
-                            >
-                                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Previous</span>
-                            </a>
-                            <a
-                                className="carousel-control-next"
-                                href="#carouselExample"
-                                role="button"
-                                data-bs-slide="next"
-                            >
-                                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span className="visually-hidden">Next</span>
-                            </a>
-                        </div>
-                        <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+                        <div class="tab-pane fade" id="navs-pills-justified-profile" role="tabpanel">
                             <img className="d-block w-100" src={Third} alt="First slide" />
                         </div>
                     </div>

@@ -67,19 +67,19 @@ function SideBar(userInfo) {
         </li>
 
         <li className="menu-item">
-          <a href={"/fittingroom"} className="menu-link">
+          <Link to={{ pathname: "fittingroom" }} state={{ userInfo: userInfo }} className="menu-link">
             <BiCloset />
             <div data-i18n="Blank">&nbsp; Fitting Room</div>
-          </a>
+          </Link>
         </li>
 
         <li className="menu-item">
-          <Link to={{pathname: "mypage"}} state={{userInfo: userInfo}} className="menu-link">
+          <Link to={{ pathname: "mypage" }} state={{ userInfo: userInfo }} className="menu-link">
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </Link>
         </li>
-          <Button text={loginText} id="gobottom" path={loginPath} userId={userId}/>
+        <Button text={loginText} id="gobottom" path={loginPath} userId={userId} />
       </ul>
     </aside>
   );

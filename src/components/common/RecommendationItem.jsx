@@ -1,6 +1,5 @@
 import Button from "./Button";
 import React from "react";
-import Test from "../../assets/img/elements/2.jpg";
 function RecommendationItem(img_src) {
   return (
     <div className="col">
