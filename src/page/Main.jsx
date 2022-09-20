@@ -6,32 +6,49 @@ import { seeotApi } from "../Api";
 
 function Main() {
   const [user, setUser] = useState({});
-  const getUserInfo = useCallback (
-    async(userId) => {
+  const [recommendationImages, setRecommendationImages] = useState([]);
+
+  const getUserInfo = useCallback(
+    async (userId) => {
       setUser({});
       await seeotApi
         .userInfo(userId)
         .then((res) => {
           setUser(res.data.user);
         })
-        .catch(function (){
+        .catch(function () {
           console.log('API 통신 오류');
         }, []);
     },
     [user]
   );
 
+  const recommendation = useCallback(
+    async (userId) => {
+      await seeotApi
+        .recommendation(userId)
+        .then((res) => {
+          setRecommendationImages(res.data.clothes);
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
+    }, [recommendationImages]
+  );
 
-  useEffect(() =>{ 
+
+  useEffect(() => {
     setUser({});
     let userId = localStorage.getItem('userId');
-    if(userId) {
+    if (userId) {
       getUserInfo(userId);
     } else {
       setUser({})
     }
-    
-   }, []);
+
+    recommendation(userId);
+
+  }, []);
 
 
   return (
@@ -64,9 +81,9 @@ function Main() {
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
                 <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                  <RecommendationItem />
-                  <RecommendationItem />
-                  <RecommendationItem />
+                  <RecommendationItem img_src={recommendationImages[0]} />
+                  <RecommendationItem img_src={recommendationImages[1]} />
+                  <RecommendationItem img_src={recommendationImages[2]} />
                 </div>
               </div>
               <div className="content-backdrop fade"></div>
