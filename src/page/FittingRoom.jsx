@@ -34,10 +34,10 @@ function FittingRoom() {
                 <div className="layout-container">
                     {/* Fitting */}
                     <div className="container-p-y card-body">
-                        <img className="d-block" src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
-                        <div className="demo-vertical-spacing btn">
+                        <img className="d-block card-img-size" src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
+                        <div className="demo-vertical-spacing btn d-flex demo-inline-spacing">
                             <Button text="Fitting" />
-                            <BiSave />
+                            <button className="btn btn-icon btn-outline-primary"><BiSave /></button>
                         </div>
                     </div>
                     {/* /Fitting */}
