@@ -1,19 +1,18 @@
-
-const FittingModal = ({openState, close}) => {
+const UploadModal = ({openState, close}) => {
 
     return(
         // <div class= "modal fade" id="smallModal" tabindex="-1" aria-hidden="true" >
         <div className={openState ? "modal fade show" : "modal fade"} 
-            id="smallModal" 
+            id="LargeModal" 
             tabindex="-1" 
             style={openState ? {display: "block"} : {display: "none"}} 
             aria-modal={openState ? "true" : ""} 
             role={openState ? "dialog" : ""}
             aria-hidden={openState ? "" : "true"}>
-            <div className="modal-dialog modal-sm" role="document">
+            <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel2">Modal title</h5>
+                        <h5 className="modal-title" id="exampleModalLabel3">Clothes Upload</h5>
                         <button
                             type="button"
                             className="btn-close"
@@ -23,20 +22,16 @@ const FittingModal = ({openState, close}) => {
                         ></button>
                     </div>
                     <div className="modal-body">
-                        <div className="row">
-                            <div className="col mb-3">
-                                <label for="nameSmall" className="form-label">Name</label>
-                                <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" />
-                            </div>
-                        </div>
                         <div className="row g-2">
                             <div className="col mb-0">
-                                <label className="form-label" for="emailSmall">Email</label>
-                                <input type="text" className="form-control" id="emailSmall" placeholder="xxxx@xxx.xx" />
+                                <label className="form-label" for="emailLarge">Clothes</label>
+                                <input class="form-control" type="file" id="formFile" />
                             </div>
-                            <div className="col mb-0">
-                                <label for="dobSmall" className="form-label">DOB</label>
-                                <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY" />
+                        </div>
+                        <div className="row">
+                            <div className="col mb-3">
+                                <label for="nameLarge" className="form-label">summer</label>
+                                <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="" />
                             </div>
                         </div>
                     </div>
@@ -52,4 +47,4 @@ const FittingModal = ({openState, close}) => {
     );
 };
 
-export default FittingModal;
+export default UploadModal;

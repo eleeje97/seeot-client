@@ -1,21 +1,8 @@
-import Button from "./Button";
-import React, { useState } from "react";
+import React from "react";
 import FittingModal from "./FittingModal"
 
 function Clothes({modalOpen, openModal, closeModal, img_src}) {
-  // const [modalOpen, setModalOpen] = useState(false);
-
-  // const openModal = () => {
-  //   console.log('ssss')
-  //   setModalOpen(true);
-  //   console.log(modalOpen);
-  // };
   
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
-
-
   return (
     <>
     <FittingModal openState={modalOpen} close={closeModal} />

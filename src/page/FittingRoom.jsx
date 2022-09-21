@@ -12,6 +12,7 @@ import Clothes from "../components/common/Clothes";
 import { seeotApi } from "../Api";
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import UploadModal from "../components/common/UploadModal"
 
 function FittingRoom() {
 
@@ -21,16 +22,25 @@ function FittingRoom() {
     const [myClothesState, setMyClothesState] = useState(true);
     const [seeotClothesState, setSeeotClothesState] = useState(false);
     const [fittingModalOpen, setFittingModalOpen] = useState(false);
+    const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
     const openFittingModal = () => {
         setFittingModalOpen(true);
     };
-    
+
     const closeFittingModal = () => {
         setFittingModalOpen(false);
     };
 
-    const navigate = useNavigate();
+    const openUploadModal = () => {
+        setUploadModalOpen(true);
+    };
+
+    const closeUploadModal = () => {
+        setUploadModalOpen(false);
+    };
+
+    // const navigate = useNavigate();
 
     const id = user.id;
 
@@ -92,7 +102,9 @@ function FittingRoom() {
         <>
             <Logo />
             <div className="container-xxl text-end">
-                <button className="btn btn-outline-primary "><BiUpload /> Upload</button>
+                <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
+                <UploadModal openState={uploadModalOpen} close={closeUploadModal}/>
+                <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
             </div>
             <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="layout-container">
@@ -146,20 +158,20 @@ function FittingRoom() {
                             <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
-                                                    closeModal={closeFittingModal} img_src={First} />
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
-                                                    closeModal={closeFittingModal} img_src={Second} />
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
-                                                    closeModal={closeFittingModal} img_src={Third} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
+                                            closeModal={closeFittingModal} img_src={First} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
+                                            closeModal={closeFittingModal} img_src={Second} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
+                                            closeModal={closeFittingModal} img_src={Third} />
                                     </div>
                                 </div>
                             </div>
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
-                                                    closeModal={closeFittingModal} img_src={Third} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
+                                            closeModal={closeFittingModal} img_src={Third} />
                                     </div>
                                 </div>
                             </div>
