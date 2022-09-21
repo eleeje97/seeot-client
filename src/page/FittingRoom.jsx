@@ -18,6 +18,16 @@ function FittingRoom() {
     const [fullbody, setFullbody] = useState('');
     const [myClothesState, setMyClothesState] = useState(true);
     const [seeotClothesState, setSeeotClothesState] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => {
+      setModalOpen(true);
+    };
+    
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
     const navigate = useNavigate();
 
     const id = user.id;
@@ -37,7 +47,7 @@ function FittingRoom() {
         []
     );
 
-    console.log("userinfo ", user.id);
+    // console.log("userinfo ", user.id);
 
     if (user.full_body_img_path === null) {
         alert("Please Save Your Profile");
@@ -67,7 +77,10 @@ function FittingRoom() {
     return (
         <>
             <Logo />
-            <div className="container-xxl flex-grow-1 container-p-y">
+            <div className="container-xxl flex-grow-1 container-p-y" >
+            {/* <div className="container-xxl flex-grow-1 container-p-y modal-open" 
+                style={{overflow: "hidden",
+                        "padding-right": "0px"}}> */}
                 <div className="layout-container">
                     {/* Fitting */}
                     <div className="container-p-y card-body">
@@ -115,9 +128,12 @@ function FittingRoom() {
                             <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes img_src={First} />
-                                        <Clothes img_src={Second} />
-                                        <Clothes img_src={Third} />
+                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
+                                                    closeModal={closeModal} img_src={First} />
+                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
+                                                    closeModal={closeModal} img_src={Second} />
+                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
+                                                    closeModal={closeModal} img_src={Third} />
                                     </div>
                                 </div>
 
@@ -126,7 +142,8 @@ function FittingRoom() {
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes img_src={Third} />
+                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
+                                                    closeModal={closeModal} img_src={Third} />
                                     </div>
                                 </div>
                             </div>
