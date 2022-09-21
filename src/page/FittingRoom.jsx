@@ -5,7 +5,7 @@ import First from "../images/sample_1.jpg";
 import Second from "../images/sample_2.jpg";
 import Third from "../images/sample_3.jpg";
 import Button from "../components/common/Button";
-import { BiSave } from 'react-icons/bi';
+import { BiSave, BiUpload } from 'react-icons/bi';
 import { GiArmoredPants } from 'react-icons/gi';
 import { FaTshirt } from 'react-icons/fa';
 import Clothes from "../components/common/Clothes";
@@ -18,16 +18,16 @@ function FittingRoom() {
     const [fullbody, setFullbody] = useState('');
     const [myClothesState, setMyClothesState] = useState(true);
     const [seeotClothesState, setSeeotClothesState] = useState(false);
-    const navigate = useNavigate();
-
+    // const navigate = useNavigate();
     const id = user.id;
+
     const clothesList = useCallback(
         async (userId) => {
             await seeotApi
                 .clothesList(userId)
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log('userclothes '+ JSON.stringify(res.data));
+                        console.log('userclothes ' + JSON.stringify(res.data));
                     }
                 })
                 .catch(function (e) {
@@ -67,6 +67,9 @@ function FittingRoom() {
     return (
         <>
             <Logo />
+            <div className="container-xxl text-end">
+                <button className="btn btn-outline-primary "><BiUpload /> Upload</button>
+            </div>
             <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="layout-container">
                     {/* Fitting */}
@@ -78,7 +81,6 @@ function FittingRoom() {
                         </div>
                     </div>
                     {/* /Fitting */}
-
                     {/* Choose */}
                     <div class="nav-align-top mb-4 container-xxl">
                         <ul class="nav nav-tabs nav-pills nav-fill">
@@ -120,8 +122,6 @@ function FittingRoom() {
                                         <Clothes img_src={Third} />
                                     </div>
                                 </div>
-
-
                             </div>
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
