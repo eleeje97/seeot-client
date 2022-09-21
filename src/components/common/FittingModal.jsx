@@ -13,7 +13,7 @@ const FittingModal = ({openState, close}) => {
             <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel2">상의 / 하의 선택</h5>
                         <button
                             type="button"
                             class="btn-close"
@@ -23,22 +23,16 @@ const FittingModal = ({openState, close}) => {
                         ></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col mb-3">
-                                <label for="nameSmall" class="form-label">Name</label>
-                                <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" />
-                            </div>
+                    <label class="form-label">이 옷에서 어떤 옷을 입어볼지 선택해주세요.</label>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" value="top" id="top" />
+                            <label class="form-check-label" for="top"> 상의 </label>
                         </div>
-                        <div class="row g-2">
-                            <div class="col mb-0">
-                                <label class="form-label" for="emailSmall">Email</label>
-                                <input type="text" class="form-control" id="emailSmall" placeholder="xxxx@xxx.xx" />
-                            </div>
-                            <div class="col mb-0">
-                                <label for="dobSmall" class="form-label">DOB</label>
-                                <input id="dobSmall" type="text" class="form-control" placeholder="DD / MM / YY" />
-                            </div>
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" value="bottom" id="bottom" />
+                            <label class="form-check-label" for="bottom"> 하의 </label>
                         </div>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>
