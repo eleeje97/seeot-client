@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
 import First from "../images/sample_1.jpg";
@@ -10,6 +10,8 @@ import { GiArmoredPants } from 'react-icons/gi';
 import { FaTshirt } from 'react-icons/fa';
 import Clothes from "../components/common/Clothes";
 import { seeotApi } from "../Api";
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
 
 function FittingRoom() {
 
@@ -64,6 +66,17 @@ function FittingRoom() {
         }
     }
 
+
+    const downRef = useRef();
+    const downloadImage = () => {
+        const down = downRef.current;
+        domtoimage
+            .toBlob(down)
+            .then((blob) => {
+                saveAs(blob, { fullbody });
+            });
+    };
+
     return (
         <>
             <Logo />
@@ -74,10 +87,14 @@ function FittingRoom() {
                 <div className="layout-container">
                     {/* Fitting */}
                     <div className="container-p-y card-body">
-                        <img className="d-block card-img-size" src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
+                        <img className="d-block card-img-size" ref={downRef}
+                            src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
                         <div className="demo-vertical-spacing btn d-flex demo-inline-spacing">
                             <Button text="Fitting" />
-                            <button className="btn btn-icon btn-outline-primary"><BiSave /></button>
+                            <button className="btn btn-icon btn-outline-primary"
+                                onClick={downloadImage}>
+                                <BiSave />
+                            </button>
                         </div>
                     </div>
                     {/* /Fitting */}
