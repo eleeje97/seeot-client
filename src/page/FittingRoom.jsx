@@ -20,14 +20,14 @@ function FittingRoom() {
     const [fullbody, setFullbody] = useState('');
     const [myClothesState, setMyClothesState] = useState(true);
     const [seeotClothesState, setSeeotClothesState] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [fittingModalOpen, setFittingModalOpen] = useState(false);
 
-    const openModal = () => {
-      setModalOpen(true);
+    const openFittingModal = () => {
+        setFittingModalOpen(true);
     };
     
-    const closeModal = () => {
-        setModalOpen(false);
+    const closeFittingModal = () => {
+        setFittingModalOpen(false);
     };
 
     const navigate = useNavigate();
@@ -109,7 +109,7 @@ function FittingRoom() {
                         </div>
                     </div>
                     {/* /Fitting */}
-                    
+
                     {/* Choose */}
                     <div class="nav-align-top mb-4 container-xxl">
                         <ul class="nav nav-tabs nav-pills nav-fill">
@@ -146,20 +146,20 @@ function FittingRoom() {
                             <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
-                                                    closeModal={closeModal} img_src={First} />
-                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
-                                                    closeModal={closeModal} img_src={Second} />
-                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
-                                                    closeModal={closeModal} img_src={Third} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
+                                                    closeModal={closeFittingModal} img_src={First} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
+                                                    closeModal={closeFittingModal} img_src={Second} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
+                                                    closeModal={closeFittingModal} img_src={Third} />
                                     </div>
                                 </div>
                             </div>
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={modalOpen} openModal={openModal} 
-                                                    closeModal={closeModal} img_src={Third} />
+                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal} 
+                                                    closeModal={closeFittingModal} img_src={Third} />
                                     </div>
                                 </div>
                             </div>
