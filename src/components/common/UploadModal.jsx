@@ -1,15 +1,100 @@
-const UploadModal = ({openState, close}) => {
+import React, { useState, useCallback } from "react";
+import { seeotApi } from "../../Api";
 
-    return(
+const UploadModal = ({ openState, close, userInfo }) => {
+
+    const userId = userInfo.id;
+    const gender = userInfo.gender;
+    const [uploaded, setUploaded] = useState(false);
+    const [imgPath, setImgPath] = useState('');
+    const [season, setSeason] = useState('');
+
+    const [spring, setSpring] = useState(false);
+    const [summer, setSummer] = useState(false);
+    const [winter, setWinter] = useState(false);
+
+
+
+    const btnClicked = () => {
+        if (uploaded) {
+            uploadClothesSave(userId, imgPath, season);
+        } else {
+            uploadClothes(userId, gender);
+        }
+    };
+
+    const radioBtnClicked = (season) => {
+        if (season === 'Summer') {
+            setWinter(false);
+            setSpring(false);
+            setSummer(true);
+        } else if (season === 'Winter') {
+            setSpring(false);
+            setSummer(false);
+            setWinter(true);
+        } else {
+            setSummer(false);
+            setWinter(false);
+            setSpring(true);
+        }
+    };
+
+    const uploadClothes = useCallback(
+        async (userId, gender) => {
+            const formData = new FormData();
+            formData.append('user_id', userId);
+            formData.append('file', document.getElementById('file').files[0]);
+            formData.append('gender', gender);
+            await seeotApi
+                .clothesUpload(formData)
+                .then((res) => {
+                    if (res.status === 200) {
+                        alert("Clothes Upload Success!");
+                        setUploaded(true);
+                        setImgPath(res.data.img_path);
+                        setSeason(res.data.season);
+                        if (season === 'Summer') {
+                            setSummer(true);
+                        } else if (season === 'Winter') {
+                            setWinter(true);
+                        } else {
+                            setSpring(true);
+                        }
+                    }
+                })
+                .catch(function (e) {
+                    console.log(e);
+                }, []);
+        },
+        []
+    );
+
+    const uploadClothesSave = useCallback(
+        async (userId, imgPath, season) => {
+            await seeotApi
+                .clothesUploadSave(userId, imgPath, season)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log('save ' + JSON.stringify(res.data));
+                    }
+                })
+                .catch(function (e) {
+                    console.log(e);
+                }, []);
+        },
+        []
+    );
+
+    return (
         // <div class= "modal fade" id="smallModal" tabindex="-1" aria-hidden="true" >
-        <div className={openState ? "modal fade show" : "modal fade"} 
-            id="LargeModal" 
-            tabindex="-1" 
-            style={openState ? {display: "block"} : {display: "none"}} 
-            aria-modal={openState ? "true" : ""} 
+        <div className={openState ? "modal fade show" : "modal fade"}
+            id="LargeModal"
+            tabindex="-1"
+            style={openState ? { display: "block" } : { display: "none" }}
+            aria-modal={openState ? "true" : ""}
             role={openState ? "dialog" : ""}
             aria-hidden={openState ? "" : "true"}>
-            <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-dialog modal-sm" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel3">Clothes Upload</h5>
@@ -22,16 +107,28 @@ const UploadModal = ({openState, close}) => {
                         ></button>
                     </div>
                     <div className="modal-body">
-                        <div className="row g-2">
+                        <div className="row g-2" style={uploaded ? { display: 'none' } : {}}>
                             <div className="col mb-0">
                                 <label className="form-label" for="emailLarge">Clothes</label>
-                                <input class="form-control" type="file" id="formFile" />
+                                <input class="form-control" type="file" id="file" />
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="col-md" style={uploaded ? {} : { display: 'none' }}>
+                        {/* <div className="col-md"> */}
                             <div className="col mb-3">
-                                <label for="nameLarge" className="form-label">summer</label>
-                                <input name="default-radio-1" class="form-check-input" type="radio" value="" id="defaultRadio2" checked="" />
+                                <input name="season" class="form-check-input" type="radio" value="Spring_fall" id="Spring_fall" 
+                                checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
+                                <label for="nameLarge" className="form-label">&nbsp;spring & fall</label>
+                            </div>
+                            <div className="col mb-3">
+                                <input name="season" class="form-check-input" type="radio" value="Summer" id="Summer" 
+                                checked={summer ? true : false} onClick={() => radioBtnClicked('Summer')} />
+                                <label for="nameLarge" className="form-label">&nbsp;summer</label>
+                            </div>
+                            <div className="col mb-3">
+                                <input name="season" class="form-check-input" type="radio" value="Winter" id="Winter" 
+                                checked={winter ? true : false} onClick={() => radioBtnClicked('Winter')} />
+                                <label for="nameLarge" className="form-label">&nbsp;winter</label>
                             </div>
                         </div>
                     </div>
@@ -39,7 +136,7 @@ const UploadModal = ({openState, close}) => {
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={btnClicked}>{uploaded ? 'Save' : 'Upload'}</button>
                     </div>
                 </div>
             </div>

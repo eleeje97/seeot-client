@@ -103,7 +103,7 @@ function FittingRoom() {
             <Logo />
             <div className="container-xxl text-end">
                 <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
-                <UploadModal openState={uploadModalOpen} close={closeUploadModal}/>
+                <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user}/>
                 <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
             </div>
             <div className="container-xxl flex-grow-1 container-p-y">
