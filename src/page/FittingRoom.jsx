@@ -25,7 +25,9 @@ function FittingRoom() {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
     const [myClothes, setMyClothes] = useState([]);
     const [seeotClothes, setSeeotClothes] = useState([]);
-    // const []
+    const [top, setTop] = useState('');
+    const [bottom, setBottom] = useState('');
+
 
     const openFittingModal = () => {
         setFittingModalOpen(true);
@@ -43,6 +45,24 @@ function FittingRoom() {
         setUploadModalOpen(false);
     };
 
+    const checkBoxClicked = (garment, clothes_id) => {
+        console.log('garment: ' + garment + ' clothes_id: ' + clothes_id);
+        if (garment === 'top') {
+            if (top === clothes_id) {
+                setTop('');
+            } else {
+                setTop(clothes_id);
+            }
+        } else {
+            if (bottom === clothes_id) {
+                setBottom('');
+            } else {
+                setBottom(clothes_id);
+            }
+        }
+    }
+
+
     // const navigate = useNavigate();
 
     const id = user.id;
@@ -53,6 +73,7 @@ function FittingRoom() {
                 .clothesList(userId)
                 .then((res) => {
                     if (res.status === 200) {
+                        console.log(res.data.user_clothes);
                         setMyClothes(res.data.user_clothes);
                         setSeeotClothes(res.data.recommend_clothes);
                     }
@@ -163,8 +184,14 @@ function FittingRoom() {
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         {myClothes.map((clothes) => (
-                                            <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path} />
+                                            <Clothes
+                                                key={clothes.origin_img_path}
+                                                modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
+                                                img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
+                                                topCheck={top===clothes.id ? true : false}
+                                                bottomCheck={bottom===clothes.id ? true : false} 
+                                                onClick={checkBoxClicked}
+                                                clothes_id={clothes.id} />
                                         ))}
                                     </div>
                                 </div>
@@ -173,8 +200,14 @@ function FittingRoom() {
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         {seeotClothes.map((clothes) => (
-                                            <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path} />
+                                            <Clothes 
+                                                key={clothes.origin_img_path}
+                                                modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
+                                                img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
+                                                topCheck={top===clothes.id ? true : false}
+                                                bottomCheck={bottom===clothes.id ? true : false}  
+                                                onClick={checkBoxClicked} 
+                                                clothes_id={clothes.id} />
                                         ))}
                                     </div>
                                 </div>
