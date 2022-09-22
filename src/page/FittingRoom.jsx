@@ -25,6 +25,7 @@ function FittingRoom() {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
     const [myClothes, setMyClothes] = useState([]);
     const [seeotClothes, setSeeotClothes] = useState([]);
+    // const []
 
     const openFittingModal = () => {
         setFittingModalOpen(true);
@@ -161,9 +162,9 @@ function FittingRoom() {
                             <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        {myClothes.map((img_url) => (
+                                        {myClothes.map((clothes) => (
                                             <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + img_url} />
+                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path} />
                                         ))}
                                     </div>
                                 </div>
@@ -171,9 +172,9 @@ function FittingRoom() {
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        {seeotClothes.map((img_url) => (
+                                        {seeotClothes.map((clothes) => (
                                             <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + img_url} />
+                                                closeModal={closeFittingModal} img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path} />
                                         ))}
                                     </div>
                                 </div>
