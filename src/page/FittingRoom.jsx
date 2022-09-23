@@ -23,6 +23,11 @@ function FittingRoom() {
     const [seeotClothesState, setSeeotClothesState] = useState(false);
     const [fittingModalOpen, setFittingModalOpen] = useState(false);
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
+    const [myClothes, setMyClothes] = useState([]);
+    const [seeotClothes, setSeeotClothes] = useState([]);
+    const [top, setTop] = useState('');
+    const [bottom, setBottom] = useState('');
+
 
     const openFittingModal = () => {
         setFittingModalOpen(true);
@@ -40,6 +45,24 @@ function FittingRoom() {
         setUploadModalOpen(false);
     };
 
+    const checkBoxClicked = (garment, clothes_id) => {
+        console.log('garment: ' + garment + ' clothes_id: ' + clothes_id);
+        if (garment === 'top') {
+            if (top === clothes_id) {
+                setTop('');
+            } else {
+                setTop(clothes_id);
+            }
+        } else {
+            if (bottom === clothes_id) {
+                setBottom('');
+            } else {
+                setBottom(clothes_id);
+            }
+        }
+    }
+
+
     // const navigate = useNavigate();
 
     const id = user.id;
@@ -50,7 +73,9 @@ function FittingRoom() {
                 .clothesList(userId)
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log('userclothes ' + JSON.stringify(res.data));
+                        console.log(res.data.user_clothes);
+                        setMyClothes(res.data.user_clothes);
+                        setSeeotClothes(res.data.recommend_clothes);
                     }
                 })
                 .catch(function (e) {
@@ -103,7 +128,7 @@ function FittingRoom() {
             <Logo />
             <div className="container-xxl text-end">
                 <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
-                <UploadModal openState={uploadModalOpen} close={closeUploadModal}/>
+                <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user} />
                 <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
             </div>
             <div className="container-xxl flex-grow-1 container-p-y">
@@ -158,20 +183,32 @@ function FittingRoom() {
                             <div className={myClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-home" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                            closeModal={closeFittingModal} img_src={First} />
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                            closeModal={closeFittingModal} img_src={Second} />
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                            closeModal={closeFittingModal} img_src={Third} />
+                                        {myClothes.map((clothes) => (
+                                            <Clothes
+                                                key={clothes.origin_img_path}
+                                                modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
+                                                img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
+                                                topCheck={top===clothes.id ? true : false}
+                                                bottomCheck={bottom===clothes.id ? true : false} 
+                                                onClick={checkBoxClicked}
+                                                clothes_id={clothes.id} />
+                                        ))}
                                     </div>
                                 </div>
                             </div>
                             <div className={seeotClothesState ? "tab-pane fade d-flex show active" : "tab-pane fade"} id="navs-pills-justified-profile" role="tabpanel">
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                                        <Clothes modalOpen={fittingModalOpen} openModal={openFittingModal}
-                                            closeModal={closeFittingModal} img_src={Third} />
+                                        {seeotClothes.map((clothes) => (
+                                            <Clothes 
+                                                key={clothes.origin_img_path}
+                                                modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
+                                                img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
+                                                topCheck={top===clothes.id ? true : false}
+                                                bottomCheck={bottom===clothes.id ? true : false}  
+                                                onClick={checkBoxClicked} 
+                                                clothes_id={clothes.id} />
+                                        ))}
                                     </div>
                                 </div>
                             </div>

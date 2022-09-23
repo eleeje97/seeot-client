@@ -1,21 +1,23 @@
 import React from "react";
 import FittingModal from "./FittingModal"
 
-function Clothes({modalOpen, openModal, closeModal, img_src}) {
-  
+function Clothes({ modalOpen, openModal, closeModal, img_src, topCheck, bottomCheck, onClick, clothes_id }) {
+
   return (
     <>
-    <FittingModal openState={modalOpen} close={closeModal} />
-    
-    <div className="col">
-      <div href="#" className="card-img-top card-img-bottom">
-        <img class="card-img-top card-img-bottom " src={img_src} alt="Card image cap" 
-          onClick={openModal} />
-        <div className={modalOpen ? "modal-backdrop fade show" : ""}></div>
+      <FittingModal openState={modalOpen} close={closeModal}
+        topCheck={topCheck ? true : false} bottomCheck={bottomCheck ? true : false}
+        onClick={onClick} clothes_id={clothes_id} />
 
+      <div className="col">
+        <div href="#" className="card-img-top card-img-bottom">
+          <img class="card-img-top card-img-bottom " src={img_src} alt="Card image cap"
+            onClick={openModal} />
+          <div className={modalOpen ? "modal-backdrop fade show" : ""}></div>
+
+        </div>
       </div>
-    </div>
-    
+
     </>
   );
 }

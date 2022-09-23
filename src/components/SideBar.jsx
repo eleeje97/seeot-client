@@ -8,6 +8,7 @@ import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
 function SideBar(userInfo) {
+  
   const [nickname, setNickname] = useState('');
   const [profile, setProfile] = useState(Profile);
   const [loginText, setLoginText] = useState('Sign In');
@@ -15,12 +16,17 @@ function SideBar(userInfo) {
   const userId = userInfo.user.id;
 
   useEffect(() => {
+    console.log("hi")
     if (userInfo.user.nickname) {
-      setNickname(userInfo.user.nickname);
+      setNickname(userInfo.user.nickname);      
       setProfile(userInfo.user.profile_image_url);
       setLoginText('Sign Out');
       setLoginPath('/logout');
     }
+    else{
+      setNickname("로그인 해주세요!");
+    }
+
   });
 
   return (
@@ -66,19 +72,24 @@ function SideBar(userInfo) {
           <a className="menu-link"><b>{nickname}</b></a>
         </li>
 
-        <li className="menu-item">
-          <Link to={{ pathname: "fittingroom" }} state={{ userInfo: userInfo }} className="menu-link">
+        
+        <li className="menu-item" >
+          
+          <Link to={userId?{ pathname: "fittingroom" }:{ pathname: "login" }} state={{ userInfo: userInfo }} className="menu-link" >
+
             <BiCloset />
             <div data-i18n="Blank">&nbsp; Fitting Room</div>
           </Link>
         </li>
 
-        <li className="menu-item">
-          <Link to={{ pathname: "mypage" }} state={{ userInfo: userInfo }} className="menu-link">
+        <li className="menu-item" >
+          <Link to={userId?{ pathname: "mypage" }:{ pathname: "login" }} state={{ userInfo: userInfo }} className="menu-link">
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </Link>
         </li>
+        
+
         <Button text={loginText} id="gobottom" path={loginPath} userId={userId} />
       </ul>
     </aside>

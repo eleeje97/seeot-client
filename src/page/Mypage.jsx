@@ -6,7 +6,6 @@ import { seeotApi } from "../Api";
 import { useCookies } from "react-cookie";
 
 function Mypage() {
-
     const location = useLocation();
     const user = location.state?.userInfo.user;
     const [nickname, setNickname] = useState('');
