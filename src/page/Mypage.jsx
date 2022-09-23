@@ -3,7 +3,6 @@ import Logo from "../components/common/LogoSeeot"
 import Upload from "../images/mypage.png";
 import { useLocation } from "react-router-dom";
 import { seeotApi } from "../Api";
-import { useCookies } from "react-cookie";
 
 function Mypage() {
     const location = useLocation();
@@ -19,15 +18,11 @@ function Mypage() {
         if (user.full_body_img_path) {
             setFullbody('http://210.106.99.80:5050/' + user.full_body_img_path);
         }
-        // deleteProfile();
-        // console.log('useEffect '+fullbody);
-
     }, []);
 
     const encodeFileToBase64 = (fileBlob) => {
         const reader = new FileReader();
         reader.readAsDataURL(fileBlob);
-        // console.log('encoder '+ fullbody);
         return new Promise((resolve) => {
             reader.onload = () => {
                 setFullbody(reader.result);
@@ -60,10 +55,6 @@ function Mypage() {
         },
         []
     );
-    // const removeCookie = useCookies();
-    // const deleteProfile = () => {
-    //     removeCookie('saveProfile');
-    // };
 
     return (
         <>
@@ -98,7 +89,7 @@ function Mypage() {
                             />
                         </label>
                         <button type="button" className="btn btn-outline-secondary account-image-reset me-2"
-                            onClick={() => setFullbody(Upload)}>
+                            onClick={() => user.full_body_img_path ? setFullbody('http://210.106.99.80:5050/' + user.full_body_img_path) : setFullbody(Upload)}>
                             <i className="bx bx-reset d-block d-sm-none"></i>
                             <span className="d-none d-sm-block">Reset</span>
                         </button>

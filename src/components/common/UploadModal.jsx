@@ -13,11 +13,13 @@ const UploadModal = ({ openState, close, userInfo }) => {
     const [summer, setSummer] = useState(false);
     const [winter, setWinter] = useState(false);
 
-
+    const [loading, setLoading] = useState(true);
 
     const btnClicked = () => {
         if (uploaded) {
             uploadClothesSave(userId, imgPath, season);
+            close();
+            window.location.reload();
         } else {
             uploadClothes(userId, gender);
         }
@@ -53,6 +55,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         setUploaded(true);
                         setImgPath(res.data.img_path);
                         setSeason(res.data.season);
+                        setLoading(false);
                         if (season === 'Summer') {
                             setSummer(true);
                         } else if (season === 'Winter') {
@@ -114,25 +117,27 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             </div>
                         </div>
                         <div className="col-md" style={uploaded ? {} : { display: 'none' }}>
-                        {/* <div className="col-md"> */}
+                            {/* <div className="col-md"> */}
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Spring_fall" id="Spring_fall" 
-                                checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
+                                <input name="season" class="form-check-input" type="radio" value="Spring_fall" id="Spring_fall"
+                                    checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
                                 <label for="nameLarge" className="form-label">&nbsp;spring & fall</label>
                             </div>
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Summer" id="Summer" 
-                                checked={summer ? true : false} onClick={() => radioBtnClicked('Summer')} />
+                                <input name="season" class="form-check-input" type="radio" value="Summer" id="Summer"
+                                    checked={summer ? true : false} onClick={() => radioBtnClicked('Summer')} />
                                 <label for="nameLarge" className="form-label">&nbsp;summer</label>
                             </div>
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Winter" id="Winter" 
-                                checked={winter ? true : false} onClick={() => radioBtnClicked('Winter')} />
+                                <input name="season" class="form-check-input" type="radio" value="Winter" id="Winter"
+                                    checked={winter ? true : false} onClick={() => radioBtnClicked('Winter')} />
                                 <label for="nameLarge" className="form-label">&nbsp;winter</label>
                             </div>
                         </div>
                     </div>
                     <div className="modal-footer">
+                        <div className="spinner-border spinner-border-lg text-primary"
+                            style={loading ? { display: 'none' } : {}} role="status"></div>
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>
                             Close
                         </button>
