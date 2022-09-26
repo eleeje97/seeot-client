@@ -145,11 +145,29 @@ function FittingRoom() {
     };
 
 
-    const tryOnBtnClicked = () => {
-        console.log('top: ' + top + ' bottom: ' + bottom);
-        // API
+    const tryon = useCallback(
+        async (id, top, bottom) => {
+            await seeotApi
+                .tryon(id, top, bottom)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log('id: ' + id + ' top: ' + top + ' bottom: ' + bottom);
+                        console.log(JSON.stringify(res.data));
+                        console.log(res.data.output_img);
+                        setFullbody(res.data.output_img);
+                    }
+                })
+                .catch(function (e) {
+                    console.log(e);
+                }, []);
+        },
+        []
+    );
 
-    }
+    const tryOnBtnClicked = () => {
+        console.log('id: ' + id + ' top: ' + top + ' bottom: ' + bottom);
+        tryon(id, top, bottom);
+    };
 
     return (
         <>

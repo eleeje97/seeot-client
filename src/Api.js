@@ -31,5 +31,8 @@ export const seeotApi = {
 
     clothesUploadSave: (userId, imgPath, season) =>
         api.get(`clothes/upload/save?user_id=${userId}&img_path=${imgPath}&season=${season}`),
+    
+    tryon: (userId, top, bottom) =>
+        api.get(`tryon?user_id=${userId}&top=${top}&bottom=${bottom}`)
 
 }
