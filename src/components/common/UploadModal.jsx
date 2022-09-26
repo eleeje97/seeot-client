@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { seeotApi } from "../../Api";
 
 const UploadModal = ({ openState, close, userInfo }) => {
@@ -57,13 +57,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         setImgPath(res.data.img_path);
                         setSeason(res.data.season);
                         setLoading(false);
-                        if (season === 'Summer') {
-                            setSummer(true);
-                        } else if (season === 'Winter') {
-                            setWinter(true);
-                        } else {
-                            setSpring(true);
-                        }
+                        console.log(season);
                     }
                 })
                 .catch(function (e) {
@@ -72,6 +66,17 @@ const UploadModal = ({ openState, close, userInfo }) => {
         },
         []
     );
+
+    useEffect(() => {
+        console.log(season);
+        if (season === 'Summer') {
+            setSummer(true);
+        } else if (season === 'Winter') {
+            setWinter(true);
+        } else {
+            setSpring(true);
+        }
+    }, [season]);
 
     const uploadClothesSave = useCallback(
         async (userId, imgPath, season) => {
