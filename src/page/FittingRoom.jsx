@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
-import First from "../images/sample_1.jpg";
-import Second from "../images/sample_2.jpg";
-import Third from "../images/sample_3.jpg";
 import Button from "../components/common/Button";
 import { BiSave, BiUpload } from 'react-icons/bi';
 import { GiArmoredPants } from 'react-icons/gi';
@@ -25,12 +22,29 @@ function FittingRoom() {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
     const [myClothes, setMyClothes] = useState([]);
     const [seeotClothes, setSeeotClothes] = useState([]);
-    const [top, setTop] = useState('');
-    const [bottom, setBottom] = useState('');
+    const [top, setTop] = useState(0);
+    const [bottom, setBottom] = useState(0);
+    const [clothesId, setClothesId] = useState('');
+    const [topCheck, setTopCheck] = useState(false);
+    const [bottomCheck, setBottomCheck] = useState(false);
 
 
-    const openFittingModal = () => {
+
+    const openFittingModal = (clothes_id) => {
+        if (top === clothes_id) {
+            setTopCheck(true);
+        } else {
+            setTopCheck(false);
+        }
+
+        if (bottom === clothes_id) {
+            setBottomCheck(true);
+        } else {
+            setBottomCheck(false);
+        }
+
         setFittingModalOpen(true);
+        setClothesId(clothes_id);
     };
 
     const closeFittingModal = () => {
@@ -45,21 +59,27 @@ function FittingRoom() {
         setUploadModalOpen(false);
     };
 
-    const checkBoxClicked = (garment, clothes_id) => {
-        console.log('garment: ' + garment + ' clothes_id: ' + clothes_id);
+    const checkBoxClicked = (garment) => {
+        // console.log('garment: ' + garment + ' clothes_id: ' + clothesId);
         if (garment === 'top') {
-            if (top === clothes_id) {
-                setTop('');
+            if (top === clothesId) {
+                setTop(0);
+                setTopCheck(false);
             } else {
-                setTop(clothes_id);
+                setTop(clothesId);
+                setTopCheck(true);
             }
         } else {
-            if (bottom === clothes_id) {
-                setBottom('');
+            if (bottom === clothesId) {
+                setBottom(0);
+                setBottomCheck(false);
             } else {
-                setBottom(clothes_id);
+                setBottom(clothesId);
+                setBottomCheck(true);
             }
         }
+
+        // console.log('top: ' + top + ' bottom: ' + bottom);
     }
 
 
@@ -73,7 +93,7 @@ function FittingRoom() {
                 .clothesList(userId)
                 .then((res) => {
                     if (res.status === 200) {
-                        console.log(res.data.user_clothes);
+                        // console.log(res.data.user_clothes);
                         setMyClothes(res.data.user_clothes);
                         setSeeotClothes(res.data.recommend_clothes);
                     }
@@ -188,8 +208,8 @@ function FittingRoom() {
                                                 key={clothes.origin_img_path}
                                                 modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
                                                 img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
-                                                topCheck={top===clothes.id ? true : false}
-                                                bottomCheck={bottom===clothes.id ? true : false} 
+                                                topCheck={topCheck} //{top===clothes.id ? true : false}
+                                                bottomCheck={bottomCheck} //{bottom===clothes.id ? true : false} 
                                                 onClick={checkBoxClicked}
                                                 clothes_id={clothes.id} />
                                         ))}

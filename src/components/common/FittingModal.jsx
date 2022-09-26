@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
 
 const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothes_id }) => {
-    console.log('Fitting Moddal: '+clothes_id);
-    // const [id, setId] = useState(clothes_id);
-    // console.log('ddd ' + id)
-
-    // useEffect(() => {
-    //     console.log(id);
-    // }, [id]);
 
     return (
-        // <div class= "modal fade" id="smallModal" tabindex="-1" aria-hidden="true" >
         <div className={openState ? "modal fade show" : "modal fade"}
             id="smallModal"
-            tabindex="-1"
+            tabIndex="-1"
             style={openState ? { display: "block" } : { display: "none" }}
             aria-modal={openState ? "true" : ""}
             role={openState ? "dialog" : ""}
@@ -21,7 +13,7 @@ const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothe
             <div className="modal-dialog modal-sm" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel2">상의 / 하의 선택 {clothes_id}</h5>
+                        <h5 className="modal-title" id="exampleModalLabel2">상의 / 하의 선택</h5>
                         <button
                             type="button"
                             className="btn-close"
@@ -36,15 +28,14 @@ const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothe
                             <input className="form-check-input" type="checkbox" value="top" id="top"
                                 checked={topCheck ? true : false}
                                 onChange={() => {
-                                    // console.log(clothes_id);
-                                    onClick('top', clothes_id);
+                                    onClick('top');
                                 }} />
                             <label className="form-check-label" htmlFor="top"> 상의 </label>
                         </div>
                         <div class="form-check mt-3">
                             <input class="form-check-input" type="checkbox" value="bottom" id="bottom"
                                 checked={bottomCheck ? true : false}
-                                onChange={() => onClick('bottom', clothes_id)} />
+                                onChange={() => onClick('bottom')} />
                             <label class="form-check-label" htmlFor="bottom"> 하의 </label>
                         </div>
 
@@ -53,7 +44,7 @@ const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothe
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-primary" onClick={close}>Save changes</button>
                     </div>
                 </div>
             </div>
