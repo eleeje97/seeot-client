@@ -13,7 +13,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
     const [summer, setSummer] = useState(false);
     const [winter, setWinter] = useState(false);
 
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const btnClicked = () => {
         if (uploaded) {
@@ -21,6 +21,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
             close();
             window.location.reload();
         } else {
+            setLoading(true);
             uploadClothes(userId, gender);
         }
     };
@@ -112,6 +113,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             data-bs-dismiss="modal"
                             aria-label="Close"
                             onClick={close}
+                            style={loading ? { display: 'none' } : {}}
                         ></button>
                     </div>
                     <div className="modal-body">
@@ -141,12 +143,20 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <div className="spinner-border spinner-border-lg text-primary"
-                            style={loading ? { display: 'none' } : {}} role="status"></div>
-                        <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>
+                        <div className="spinner-border spinner-border-lg text-primary "
+                            // style={loading ? {} : { display: 'none' }}
+                            
+                            role="status"></div>
+                        <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}
+                            // style={loading ? { display: 'none' } : {}}>
+                            style={{ display: 'none' }} >
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary" onClick={btnClicked}>{uploaded ? 'Save' : 'Upload'}</button>
+                        <button type="button" className="btn btn-primary" onClick={btnClicked}
+                            // style={loading ? { display: 'none' } : {}}>
+                            style={{ display: 'none' }} >
+                            {uploaded ? 'Save' : 'Upload'}
+                        </button>
                     </div>
                 </div>
             </div>
