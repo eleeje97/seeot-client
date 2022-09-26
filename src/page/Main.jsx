@@ -7,6 +7,7 @@ import { seeotApi } from "../Api";
 function Main() {
   const [user, setUser] = useState({});
   const [recommendationImages, setRecommendationImages] = useState([]);
+  const [id, setId] = useState();
 
   const getUserInfo = useCallback(
     async (userId) => {
@@ -40,6 +41,7 @@ function Main() {
   useEffect(() => {
     setUser({});
     let userId = localStorage.getItem('userId');
+    setId(userId);
     if (userId) {
       getUserInfo(userId);
     } else {
@@ -64,7 +66,7 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"> {/* js:void(0) */}
+                <a className="nav-item nav-link px-0 me-xl-4" href="#">
                   <HiOutlineMenu />
                 </a>
               </div>

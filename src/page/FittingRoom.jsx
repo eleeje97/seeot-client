@@ -14,7 +14,9 @@ import UploadModal from "../components/common/UploadModal"
 function FittingRoom() {
 
     const location = useLocation();
+    // console.log(location.state?.userId);
     const user = location.state?.userInfo.user;
+    const id = user.id;
     const [fullbody, setFullbody] = useState('');
     const [myClothesState, setMyClothesState] = useState(true);
     const [seeotClothesState, setSeeotClothesState] = useState(false);
@@ -85,7 +87,6 @@ function FittingRoom() {
 
     // const navigate = useNavigate();
 
-    const id = user.id;
 
     const clothesList = useCallback(
         async (userId) => {
@@ -143,6 +144,13 @@ function FittingRoom() {
             });
     };
 
+
+    const tryOnBtnClicked = () => {
+        console.log('top: ' + top + ' bottom: ' + bottom);
+        // API
+
+    }
+
     return (
         <>
             <Logo />
@@ -158,7 +166,13 @@ function FittingRoom() {
                         <img className="d-block card-img-size" ref={downRef}
                             src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
                         <div className="demo-vertical-spacing btn d-flex demo-inline-spacing">
-                            <Button text="Fitting" />
+                            {/* <Button text="Try On" path="/" /> */}
+                            {/* <li className="menu-item"> */}
+                            <button className="btn btn-primary d-grid w-100" type="submit"
+                                onClick={tryOnBtnClicked}>
+                                Try On
+                            </button>
+                            {/* </li> */}
                             <button className="btn btn-icon btn-outline-primary"
                                 onClick={downloadImage}>
                                 <BiSave />
@@ -208,8 +222,8 @@ function FittingRoom() {
                                                 key={clothes.origin_img_path}
                                                 modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
                                                 img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
-                                                topCheck={topCheck} //{top===clothes.id ? true : false}
-                                                bottomCheck={bottomCheck} //{bottom===clothes.id ? true : false} 
+                                                topCheck={topCheck}
+                                                bottomCheck={bottomCheck}
                                                 onClick={checkBoxClicked}
                                                 clothes_id={clothes.id} />
                                         ))}
@@ -220,13 +234,13 @@ function FittingRoom() {
                                 <div className="container-xxl flex-grow-1 container-p-y">
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         {seeotClothes.map((clothes) => (
-                                            <Clothes 
+                                            <Clothes
                                                 key={clothes.origin_img_path}
                                                 modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
                                                 img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
-                                                topCheck={top===clothes.id ? true : false}
-                                                bottomCheck={bottom===clothes.id ? true : false}  
-                                                onClick={checkBoxClicked} 
+                                                topCheck={topCheck}
+                                                bottomCheck={bottomCheck}
+                                                onClick={checkBoxClicked}
                                                 clothes_id={clothes.id} />
                                         ))}
                                     </div>

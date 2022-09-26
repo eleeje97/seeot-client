@@ -144,7 +144,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
                     </div>
                     <div className="modal-footer">
                         <div className="spinner-border spinner-border-lg text-primary "
-                            // style={loading ? {} : { display: 'none' }}
+                            style={loading ? {} : { display: 'none' }}
                             
                             role="status"></div>
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}
@@ -153,8 +153,8 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             Close
                         </button>
                         <button type="button" className="btn btn-primary" onClick={btnClicked}
-                            // style={loading ? { display: 'none' } : {}}>
-                            style={{ display: 'none' }} >
+                            style={loading ? { display: 'none' } : {}}>
+                            {/* style={{ display: 'none' }} > */}
                             {uploaded ? 'Save' : 'Upload'}
                         </button>
                     </div>

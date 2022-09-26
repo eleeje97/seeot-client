@@ -16,7 +16,6 @@ function SideBar(userInfo) {
   const userId = userInfo.user.id;
 
   useEffect(() => {
-    console.log("hi")
     if (userInfo.user.nickname) {
       setNickname(userInfo.user.nickname);      
       setProfile(userInfo.user.profile_image_url);
@@ -48,7 +47,7 @@ function SideBar(userInfo) {
         </a>
 
         <a
-          href="javascript:void(0);"
+          href="#"
           className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
         >
           <HiChevronLeft />
@@ -58,11 +57,11 @@ function SideBar(userInfo) {
       <div className="menu-inner-shadow"></div>
 
       <ul className="menu-inner py-1">
-        <div class="col-md-12 mb-profile">
+        <div className="col-md-12 mb-profile">
           <img
             src={profile}
             alt="user-avatar"
-            class="d-block rounded"
+            className="d-block rounded"
             height="150"
             width="150"
             id="uploadedAvatar"
