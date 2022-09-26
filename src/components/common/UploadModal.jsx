@@ -98,7 +98,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
         // <div class= "modal fade" id="smallModal" tabindex="-1" aria-hidden="true" >
         <div className={openState ? "modal fade show" : "modal fade"}
             id="LargeModal"
-            tabindex="-1"
+            tabIndex="-1"
             style={openState ? { display: "block" } : { display: "none" }}
             aria-modal={openState ? "true" : ""}
             role={openState ? "dialog" : ""}
@@ -119,26 +119,26 @@ const UploadModal = ({ openState, close, userInfo }) => {
                     <div className="modal-body">
                         <div className="row g-2" style={uploaded ? { display: 'none' } : {}}>
                             <div className="col mb-0">
-                                <label className="form-label" for="emailLarge">Clothes</label>
-                                <input class="form-control" type="file" id="file" />
+                                <label className="form-label" htmlFor="emailLarge">Clothes</label>
+                                <input className="form-control" type="file" id="file" />
                             </div>
                         </div>
                         <div className="col-md" style={uploaded ? {} : { display: 'none' }}>
                             {/* <div className="col-md"> */}
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Spring_fall" id="Spring_fall"
+                                <input name="season" className="form-check-input" type="radio" value="Spring_fall" id="Spring_fall"
                                     checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
-                                <label for="nameLarge" className="form-label">&nbsp;spring & fall</label>
+                                <label htmlFor="nameLarge" className="form-label">&nbsp;spring & fall</label>
                             </div>
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Summer" id="Summer"
+                                <input name="season" className="form-check-input" type="radio" value="Summer" id="Summer"
                                     checked={summer ? true : false} onClick={() => radioBtnClicked('Summer')} />
-                                <label for="nameLarge" className="form-label">&nbsp;summer</label>
+                                <label htmlFor="nameLarge" className="form-label">&nbsp;summer</label>
                             </div>
                             <div className="col mb-3">
-                                <input name="season" class="form-check-input" type="radio" value="Winter" id="Winter"
+                                <input name="season" className="form-check-input" type="radio" value="Winter" id="Winter"
                                     checked={winter ? true : false} onClick={() => radioBtnClicked('Winter')} />
-                                <label for="nameLarge" className="form-label">&nbsp;winter</label>
+                                <label htmlFor="nameLarge" className="form-label">&nbsp;winter</label>
                             </div>
                         </div>
                     </div>

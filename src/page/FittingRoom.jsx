@@ -24,8 +24,8 @@ function FittingRoom() {
     const [uploadModalOpen, setUploadModalOpen] = useState(false);
     const [myClothes, setMyClothes] = useState([]);
     const [seeotClothes, setSeeotClothes] = useState([]);
-    const [top, setTop] = useState(0);
-    const [bottom, setBottom] = useState(0);
+    const [top, setTop] = useState(-1);
+    const [bottom, setBottom] = useState(-1);
     const [clothesId, setClothesId] = useState('');
     const [topCheck, setTopCheck] = useState(false);
     const [bottomCheck, setBottomCheck] = useState(false);
@@ -65,7 +65,7 @@ function FittingRoom() {
         // console.log('garment: ' + garment + ' clothes_id: ' + clothesId);
         if (garment === 'top') {
             if (top === clothesId) {
-                setTop(0);
+                setTop(-1);
                 setTopCheck(false);
             } else {
                 setTop(clothesId);
@@ -73,7 +73,7 @@ function FittingRoom() {
             }
         } else {
             if (bottom === clothesId) {
-                setBottom(0);
+                setBottom(-1);
                 setBottomCheck(false);
             } else {
                 setBottom(clothesId);
@@ -182,9 +182,9 @@ function FittingRoom() {
                     {/* /Fitting */}
 
                     {/* Choose */}
-                    <div class="nav-align-top mb-4 container-xxl">
-                        <ul class="nav nav-tabs nav-pills nav-fill">
-                            <li class="nav-item">
+                    <div className="nav-align-top mb-4 container-xxl">
+                        <ul className="nav nav-tabs nav-pills nav-fill">
+                            <li className="nav-item">
                                 <button
                                     type="button"
                                     className={myClothesState ? "nav-link active" : "nav-link"}
@@ -198,7 +198,7 @@ function FittingRoom() {
                                     <FaTshirt /> My Clothes
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li className="nav-item">
                                 <button
                                     type="button"
                                     className={seeotClothesState ? "nav-link active" : "nav-link"}
