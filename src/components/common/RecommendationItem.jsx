@@ -32,7 +32,7 @@ function RecommendationItem({img_src, userId, userInfo, season}) {
             <Link to={userId ? { pathname: "fittingroom" } : { pathname: "login" }} state={{ userInfo: { 'user': userInfo } }} className="menu-link" >
               <button className="btn btn-primary d-grid w-100" type="submit"
                 onClick={btnClicked}>
-                피팅룸으로 가기
+                  See옷 Clothes에 담기
               </button>
             </Link>
           </li>

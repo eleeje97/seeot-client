@@ -232,7 +232,7 @@ function FittingRoom() {
                                     aria-selected="false"
                                     onClick={() => tabClick('seeot')}
                                 >
-                                    <GiArmoredPants /> Seeot Clothes
+                                    <GiArmoredPants /> See옷 Clothes
                                 </button>
                             </li>
                         </ul>
