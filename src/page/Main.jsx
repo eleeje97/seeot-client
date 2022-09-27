@@ -7,6 +7,7 @@ import { seeotApi } from "../Api";
 function Main() {
   const [user, setUser] = useState({});
   const [recommendationImages, setRecommendationImages] = useState([]);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
   const [id, setId] = useState();
 
   const getUserInfo = useCallback(
@@ -37,6 +38,14 @@ function Main() {
     }, [recommendationImages]
   );
 
+  const openSideBar = () => {
+    setSideBarOpen(true);
+  }
+
+  // const closeSideBar = () => {
+  //   setSideBarOpen(false);
+  // }
+
 
   useEffect(() => {
     setUser({});
@@ -53,11 +62,16 @@ function Main() {
   }, []);
 
 
+  useEffect(() => {
+    console.log(sideBarOpen);
+  }, [sideBarOpen]);
+
+
   return (
     <div>
-      <div className="layout-wrapper layout-content-navbar">
+      <div className={sideBarOpen ? "layout-wrapper layout-content-navbar layout-menu-expanded" : "layout-wrapper layout-content-navbar"}>
         <div className="layout-container">
-          <SideBar user={user} />
+          <SideBar user={user} closeSideBar={setSideBarOpen} />
 
           {/* 메인 컨텐츠 */}
           <div className="layout-page">
@@ -66,7 +80,7 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" href="#">
+                <a className="nav-item nav-link px-0 me-xl-4" onClick={openSideBar}>
                   <HiOutlineMenu />
                 </a>
               </div>
@@ -82,7 +96,7 @@ function Main() {
             </nav>
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
-                <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+                <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                   <RecommendationItem img_src={recommendationImages[0]} />
                   <RecommendationItem img_src={recommendationImages[1]} />
                   <RecommendationItem img_src={recommendationImages[2]} />

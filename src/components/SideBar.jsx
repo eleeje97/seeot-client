@@ -7,18 +7,25 @@ import Profile from "../images/profile.jpg";
 import { HiChevronLeft } from "react-icons/hi"
 import { Link } from "react-router-dom";
 
-function SideBar(userInfo) {
+function SideBar({user, closeSideBar}) {
   
   const [nickname, setNickname] = useState('');
   const [profile, setProfile] = useState(Profile);
   const [loginText, setLoginText] = useState('Sign In');
   const [loginPath, setLoginPath] = useState('/login');
-  const userId = userInfo.user.id;
+
+  // const userInfo = props.user;
+  // const closeSideBar = props.closeSideBar;
+  const userInfo = user;
+  // console.log(user);
+  // console.log(closeSideBar);
+  const userId = userInfo.id;
+
 
   useEffect(() => {
-    if (userInfo.user.nickname) {
-      setNickname(userInfo.user.nickname);      
-      setProfile(userInfo.user.profile_image_url);
+    if (userInfo.nickname) {
+      setNickname(userInfo.nickname);      
+      setProfile(userInfo.profile_image_url);
       setLoginText('Sign Out');
       setLoginPath('/logout');
     }
@@ -45,12 +52,11 @@ function SideBar(userInfo) {
             See옷
           </span>
         </a>
-
         <a
-          href="#"
           className="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"
+          onClick={() => closeSideBar(false)}
         >
-          <HiChevronLeft />
+          <HiChevronLeft size="24" color="#FFF" />
         </a>
       </div>
 
@@ -74,7 +80,7 @@ function SideBar(userInfo) {
         
         <li className="menu-item" >
           
-          <Link to={userId?{ pathname: "fittingroom" }:{ pathname: "login" }} state={{ userInfo: userInfo }} className="menu-link" >
+          <Link to={userId?{ pathname: "fittingroom" }:{ pathname: "login" }} state={{ userInfo: {'user': userInfo }}} className="menu-link" >
 
             <BiCloset />
             <div data-i18n="Blank">&nbsp; Fitting Room</div>
@@ -82,7 +88,7 @@ function SideBar(userInfo) {
         </li>
 
         <li className="menu-item" >
-          <Link to={userId?{ pathname: "mypage" }:{ pathname: "login" }} state={{ userInfo: userInfo }} className="menu-link">
+          <Link to={userId?{ pathname: "mypage" }:{ pathname: "login" }} state={{ userInfo: {'user': userInfo } }} className="menu-link">
             <FiUser />
             <div data-i18n="Analytics">&nbsp; Mypage</div>
           </Link>
