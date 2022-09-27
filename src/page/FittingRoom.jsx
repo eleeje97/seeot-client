@@ -10,6 +10,7 @@ import { seeotApi } from "../Api";
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 import UploadModal from "../components/common/UploadModal"
+import LoadingModal from "../components/common/LoadingModal";
 
 function FittingRoom() {
 
@@ -29,6 +30,8 @@ function FittingRoom() {
     const [clothesId, setClothesId] = useState('');
     const [topCheck, setTopCheck] = useState(false);
     const [bottomCheck, setBottomCheck] = useState(false);
+    const [loadingModalOpen, setLoadingModalOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
 
 
 
@@ -60,6 +63,10 @@ function FittingRoom() {
     const closeUploadModal = () => {
         setUploadModalOpen(false);
     };
+
+    const closeLoadingModal = () => {
+        setLoadingModalOpen(false);
+    }
 
     const checkBoxClicked = (garment) => {
         // console.log('garment: ' + garment + ' clothes_id: ' + clothesId);
@@ -94,7 +101,6 @@ function FittingRoom() {
                 .clothesList(userId)
                 .then((res) => {
                     if (res.status === 200) {
-                        // console.log(res.data.user_clothes);
                         setMyClothes(res.data.user_clothes);
                         setSeeotClothes(res.data.recommend_clothes);
                     }
@@ -105,8 +111,6 @@ function FittingRoom() {
         },
         []
     );
-
-    // console.log("userinfo ", user.id);
 
     if (user.full_body_img_path === null) {
         alert("Please Save Your Profile");
@@ -152,6 +156,7 @@ function FittingRoom() {
                 .then((res) => {
                     if (res.status === 200) {
                         setFullbody(res.data.output_img);
+                        setLoading(false);
                     }
                 })
                 .catch(function (e) {
@@ -163,12 +168,14 @@ function FittingRoom() {
 
     const tryOnBtnClicked = () => {
         // console.log('id: ' + id + ' top: ' + top + ' bottom: ' + bottom);
+        setLoadingModalOpen(true);
         tryon(id, top, bottom);
     };
 
     return (
         <>
             <Logo />
+            <LoadingModal openState={loadingModalOpen} close={closeLoadingModal} text={'Try On'} loading={loading}/>
             <div className="container-xxl text-end">
                 <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
                 <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user} />
@@ -187,6 +194,7 @@ function FittingRoom() {
                                 onClick={tryOnBtnClicked}>
                                 Try On
                             </button>
+                            <LoadingModal openState={uploadModalOpen} />
                             {/* </li> */}
                             <button className="btn btn-icon btn-outline-primary"
                                 onClick={downloadImage}>
