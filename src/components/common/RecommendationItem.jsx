@@ -1,8 +1,26 @@
-import Button from "./Button";
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
+import { seeotApi } from "../../Api";
 
-function RecommendationItem({img_src, userId, userInfo}) {
+function RecommendationItem({img_src, userId, userInfo, season}) {
+
+  const saveRecommendation = useCallback(
+    async (userId, imgPath, season) => {
+      await seeotApi
+        .recommendationSave(userId, imgPath, season)
+        .then((res) => {
+          console.log(JSON.stringify(res));
+        })
+        .catch(function (e) {
+          console.log(e);
+        });
+    }, []
+  );
+
+  const btnClicked = () => {
+    saveRecommendation(userId, img_src, season);
+  }
+
   return (
     <div className="col">
       <div href="#" className="card-img-top card-img-bottom">
@@ -12,7 +30,8 @@ function RecommendationItem({img_src, userId, userInfo}) {
 
           <li className="menu-item">
             <Link to={userId ? { pathname: "fittingroom" } : { pathname: "login" }} state={{ userInfo: { 'user': userInfo } }} className="menu-link" >
-              <button className="btn btn-primary d-grid w-100" type="submit">
+              <button className="btn btn-primary d-grid w-100" type="submit"
+                onClick={btnClicked}>
                 피팅룸으로 가기
               </button>
             </Link>

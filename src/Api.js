@@ -20,8 +20,8 @@ export const seeotApi = {
     recommendation: (userId) =>
         api.get(`recommendation?user_id=${userId}`, {}),
 
-    recommendationSave: (userId, imgPath) =>
-        api.get(`recommedation/save?user_id=${userId}&img_path=${imgPath}`, {}),
+    recommendationSave: (userId, imgPath, season) =>
+        api.get(`recommendation/save?user_id=${userId}&img_path=${imgPath}&season=${season}`, {}),
 
     clothesList: (userId) =>
         api.get(`clothes/list?user_id=${userId}`, {}),

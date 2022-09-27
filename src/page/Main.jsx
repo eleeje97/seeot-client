@@ -9,6 +9,7 @@ function Main() {
   const [recommendationImages, setRecommendationImages] = useState([]);
   const [sideBarOpen, setSideBarOpen] = useState(false);
   const [id, setId] = useState();
+  const [season, setSeason] = useState('');
 
   const getUserInfo = useCallback(
     async (userId) => {
@@ -31,6 +32,7 @@ function Main() {
         .recommendation(userId)
         .then((res) => {
           setRecommendationImages(res.data.clothes);
+          setSeason(res.data.season);
         })
         .catch(function (e) {
           console.log(e);
@@ -94,11 +96,11 @@ function Main() {
               <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                   <RecommendationItem img_src={recommendationImages[0]} 
-                    userId={id} userInfo={user} />
+                    userId={id} userInfo={user} season={season} />
                   <RecommendationItem img_src={recommendationImages[1]} 
-                    userId={id} userInfo={user} />
+                    userId={id} userInfo={user} season={season} />
                   <RecommendationItem img_src={recommendationImages[2]} 
-                    userId={id} userInfo={user} />
+                    userId={id} userInfo={user} season={season} />
                 </div>
               </div>
               <div className="content-backdrop fade"></div>
