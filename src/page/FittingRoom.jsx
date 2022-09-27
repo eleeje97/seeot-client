@@ -58,6 +58,7 @@ function FittingRoom() {
 
     const openUploadModal = () => {
         setUploadModalOpen(true);
+        // setLoadingModalOpen(false);
     };
 
     const closeUploadModal = () => {
@@ -194,7 +195,6 @@ function FittingRoom() {
                                 onClick={tryOnBtnClicked}>
                                 Try On
                             </button>
-                            <LoadingModal openState={uploadModalOpen} />
                             {/* </li> */}
                             <button className="btn btn-icon btn-outline-primary"
                                 onClick={downloadImage}>
