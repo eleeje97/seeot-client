@@ -3,6 +3,7 @@ import Logo from "../components/common/LogoSeeot"
 import Upload from "../images/mypage.png";
 import { useLocation } from "react-router-dom";
 import { seeotApi } from "../Api";
+import LoadingModal from "../components/common/LoadingModal";
 
 function Mypage() {
     const location = useLocation();
@@ -11,6 +12,12 @@ function Mypage() {
     // const [gender, setGender] = useState('');
     const gender = user.gender;
     const [fullbody, setFullbody] = useState(Upload);
+    const [loadingModal, setLoadingModal] = useState(false);
+    const [loading, setLoading] = useState(true);
+    
+    const closeModal = () => {
+        setLoadingModal(false);
+    }
 
     useEffect(() => {
         setNickname(user.nickname);
@@ -33,6 +40,7 @@ function Mypage() {
 
     const saveProfile = () => {
         const genderValue = document.getElementById('gender').value;
+        setLoadingModal(true);
         updateProfile(user.id, genderValue);
     };
 
@@ -46,7 +54,7 @@ function Mypage() {
                 .updateProfile(formData)
                 .then((res) => {
                     if (res.status === 200) {
-                        alert("Profile Update Success!");
+                        setLoading(false);
                     }
                 })
                 .catch(function (e) {
@@ -59,6 +67,7 @@ function Mypage() {
     return (
         <>
             <Logo />
+            <LoadingModal openState={loadingModal} close={closeModal} text={'Update Profile'} loading={loading}/>
             <div className="demo-vertical-spacing card-body">
                 <div className="card demo-vertical-spacing btn">
                     <div className="d-flex align-items-start align-items-sm-center gap-4">
@@ -96,7 +105,7 @@ function Mypage() {
                     </div>
                     <div className="text-end">
                         <button type="submit" className="btn btn-primary me-2 " onClick={saveProfile}>Save changes</button>
-                        {/* {deleteProfile.saveProfile} */}
+                        <LoadingModal />
                     </div>
                 </div>
             </div>

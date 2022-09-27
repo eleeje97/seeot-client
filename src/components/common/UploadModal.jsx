@@ -57,7 +57,6 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         setImgPath(res.data.img_path);
                         setSeason(res.data.season);
                         setLoading(false);
-                        console.log(season);
                     }
                 })
                 .catch(function (e) {
@@ -95,7 +94,6 @@ const UploadModal = ({ openState, close, userInfo }) => {
     );
 
     return (
-        // <div class= "modal fade" id="smallModal" tabindex="-1" aria-hidden="true" >
         <div className={openState ? "modal fade show" : "modal fade"}
             id="LargeModal"
             tabIndex="-1"
@@ -145,7 +143,6 @@ const UploadModal = ({ openState, close, userInfo }) => {
                     <div className="modal-footer">
                         <div className="spinner-border spinner-border-lg text-primary "
                             style={loading ? {} : { display: 'none' }}
-                            
                             role="status"></div>
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}
                             // style={loading ? { display: 'none' } : {}}>
