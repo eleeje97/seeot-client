@@ -62,10 +62,6 @@ function Main() {
   }, []);
 
 
-  useEffect(() => {
-    console.log(sideBarOpen);
-  }, [sideBarOpen]);
-
 
   return (
     <div>
@@ -97,9 +93,12 @@ function Main() {
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                  <RecommendationItem img_src={recommendationImages[0]} />
-                  <RecommendationItem img_src={recommendationImages[1]} />
-                  <RecommendationItem img_src={recommendationImages[2]} />
+                  <RecommendationItem img_src={recommendationImages[0]} 
+                    userId={id} userInfo={user} />
+                  <RecommendationItem img_src={recommendationImages[1]} 
+                    userId={id} userInfo={user} />
+                  <RecommendationItem img_src={recommendationImages[2]} 
+                    userId={id} userInfo={user} />
                 </div>
               </div>
               <div className="content-backdrop fade"></div>
