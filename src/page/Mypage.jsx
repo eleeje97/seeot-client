@@ -12,11 +12,11 @@ function Mypage() {
     // const [gender, setGender] = useState('');
     const gender = user.gender;
     const [fullbody, setFullbody] = useState(Upload);
-    const [loadingModal, setLoadingModal] = useState(false);
+    const [loadingModalOpen, setLoadingModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
     
     const closeModal = () => {
-        setLoadingModal(false);
+        setLoadingModalOpen(false);
     }
 
     useEffect(() => {
@@ -40,7 +40,7 @@ function Mypage() {
 
     const saveProfile = () => {
         const genderValue = document.getElementById('gender').value;
-        setLoadingModal(true);
+        setLoadingModalOpen(true);
         updateProfile(user.id, genderValue);
     };
 
@@ -67,7 +67,7 @@ function Mypage() {
     return (
         <>
             <Logo />
-            <LoadingModal openState={loadingModal} close={closeModal} text={'Update Profile'} loading={loading}/>
+            <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading}/>
             <div className="demo-vertical-spacing card-body">
                 <div className="card demo-vertical-spacing btn">
                     <div className="d-flex align-items-start align-items-sm-center gap-4">
