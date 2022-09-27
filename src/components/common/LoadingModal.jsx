@@ -20,15 +20,7 @@ const LoadingModal = ({ openState, close, text, loading}) => {
             <div className="modal-dialog modal-dialog-centered modal-sm" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel3">{text}</h5>
-                        <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                            onClick={close}
-                            style={loading ? { display: 'none' } : {}}
-                        ></button>
+                        <h5 className="modal-title" id="exampleModalLabel3">{text}</h5>                        
                     </div>
                     <div className="modal-body card-body">
                         <div className="spinner-border spinner-border-lg text-primary"
