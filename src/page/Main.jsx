@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import RecommendationItem from "../components/common/RecommendationItem";
 import SideBar from "../components/SideBar";
 import { HiOutlineMenu } from "react-icons/hi";
-import { seeotApi } from "../Api";
 import { AiOutlineReload } from "react-icons/ai"
+import { BiSave } from 'react-icons/bi';
+import { seeotApi } from "../Api";
 
 function Main() {
   const [user, setUser] = useState({});
@@ -63,8 +64,6 @@ function Main() {
 
   }, []);
 
-
-
   return (
     <div>
       <div className={sideBarOpen ? "layout-wrapper layout-content-navbar layout-menu-expanded" : "layout-wrapper layout-content-navbar"}>
@@ -82,16 +81,30 @@ function Main() {
                   <HiOutlineMenu />
                 </a>
               </div>
-              <h5 className="navbar-nav align-items-center">
-                Today's&nbsp;Recommendation
+              <h5 className="navbar-nav align-items-center me-auto">
+                추천 받을 날짜와 도시를 선택해 주세요(최대 10일까지 가능)
               </h5>
-              <div
-                className="navbar-nav-right d-flex align-items-center"
-                id="navbar-collapse"
-              >
-                <ul className="navbar-nav flex-row align-items-center ms-auto"></ul>
+              <div className="d-flex align-items-center" id="navbar-collapse">
+                <ul className="navbar-nav flex-row align-items-center ms-auto" inputMode="submit">
+                  <input class="form-control me-2" type="date" min="2022-09-21" max="2022-10-02"
+                         value="today"></input>
+                  <select id="date" className="select2 form-select me-2">
+                    <option value="Seoul">서울</option>
+                    <option value="Incheon">인천</option>
+                    <option value="Pusan">부산</option>
+                    <option value="New York">뉴욕</option>
+                    <option value="London">런던</option>
+                    <option value="Tokyo">도쿄</option>
+                    <option value="Moscow">모스크바</option>
+                  </select>
+                  <button type="button" class="btn btn-outline-primary"><BiSave /></button>
+                </ul>
               </div>
             </nav>
+            <div className="btn text-end me-5 scroll-top">
+              <button className="btn btn-icon btn-outline-primary"
+                onClick={reload}><AiOutlineReload /></button>
+            </div>
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
@@ -107,10 +120,6 @@ function Main() {
                     userId={id} userInfo={user} season={season} />
                   <RecommendationItem img_src={recommendationImages[5]}
                     userId={id} userInfo={user} season={season} />
-                </div>
-                <div className="btn text-end me-5">
-                  <button className="btn btn-icon btn-outline-primary"
-                    onClick={reload}><AiOutlineReload /></button>
                 </div>
               </div>
               <div className="content-backdrop fade"></div>

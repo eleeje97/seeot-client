@@ -7454,6 +7454,12 @@ button:focus {
   flex-basis: column;
 }
 
+.scroll-top {
+  position: sticky;
+  top: 100px;
+  right: 300px;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;

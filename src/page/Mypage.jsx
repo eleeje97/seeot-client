@@ -5,6 +5,11 @@ import { useLocation } from "react-router-dom";
 import { seeotApi } from "../Api";
 import LoadingModal from "../components/common/LoadingModal";
 import FooterMypage from "../components/FooterMypage";
+import { FaHome } from "react-icons/fa"
+import { BiCloset } from "react-icons/bi"
+import First from "../images/sample_1.jpg"
+import Second from "../images/sample_2.jpg"
+import Third from "../images/sample_3.jpg"
 
 function Mypage() {
     const location = useLocation();
@@ -70,8 +75,8 @@ function Mypage() {
             <Logo />
             <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading} />
             <div className="text-end">
-                <a href={"/"} className="btn btn-primary me-2">Back to home</a>
-                <a href={"/fittingroom"} className="btn btn-outline-primary me-4">Fitting Room</a>
+                <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
+                <a href={"/fittingroom"} className="btn btn-outline-primary me-4"><BiCloset />&nbsp;Fitting Room</a>
             </div>
             <div className="demo-vertical-spacing card-body">
                 <div className="card demo-vertical-spacing btn">
@@ -85,6 +90,14 @@ function Mypage() {
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
+                        </div>
+                        <div className="row row-cols-1 row-cols-md-3 g-4">
+                            <img src={First}></img>
+                            <img src={Second}></img>
+                            <img src={Third}></img>
+                            <a className="">
+                                불량한 예시들(ex 앉아있는 사진, 뒷모습, 휴대폰나옴)
+                            </a>
                         </div>
                     </div>
                     <div className="d-flex">

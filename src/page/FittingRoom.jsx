@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
 import { BiSave, BiUpload } from 'react-icons/bi';
 import { GiArmoredPants } from 'react-icons/gi';
-import { FaTshirt } from 'react-icons/fa';
+import { FaTshirt, FaHome } from 'react-icons/fa';
+import { FiUser } from "react-icons/fi"
+import { TbArrowBigTop } from "react-icons/tb"
 import Clothes from "../components/common/Clothes";
 import { seeotApi } from "../Api";
 import domtoimage from 'dom-to-image';
@@ -160,13 +162,26 @@ function FittingRoom() {
         tryon(id, top, bottom);
     };
 
+    const handleScroll = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    };
+
     return (
         <>
             <Logo />
             <LoadingModal openState={loadingModalOpen} close={closeLoadingModal} text={'Try On'} loading={loading} />
             <div className="container-xxl text-end">
-                <a href={"/"} className="btn btn-primary me-2">Back to home</a>
-                <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
+                <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
+                <a href="/mypage" className="btn btn-outline-primary me-2"><FiUser />&nbsp;Mypage</a>
+                {/* <Link to={{ pathname: "/mypage" }}>
+                    <button className="btn btn-outline-primary me-2" type="submit">
+                        <FiUser />&nbsp;Mypage
+                    </button>
+                </Link> */}
+                <button className="btn btn-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
                 <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user} />
                 <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
             </div>
@@ -188,7 +203,6 @@ function FittingRoom() {
                         </div>
                     </div>
                     {/* /Fitting */}
-
                     {/* Choose */}
                     <div className="nav-align-top mb-4 container-xxl">
                         <ul className="nav nav-tabs nav-pills nav-fill">
@@ -256,8 +270,11 @@ function FittingRoom() {
                             </div>
                         </div>
                     </div>
+                    <div className="me-5">
+                        <button className="btn btn-icon btn-outline-primary scroll-top"
+                            onClick={handleScroll}><TbArrowBigTop /></button>
+                    </div>
                     {/* /Choose */}
-
                 </div>
             </div>
         </>
