@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Logo from "../components/common/LogoSeeot"
-import Button from "../components/common/Button";
 import { BiSave, BiUpload } from 'react-icons/bi';
 import { GiArmoredPants } from 'react-icons/gi';
 import { FaTshirt } from 'react-icons/fa';
@@ -15,7 +14,6 @@ import LoadingModal from "../components/common/LoadingModal";
 function FittingRoom() {
 
     const location = useLocation();
-    // console.log(location.state?.userId);
     const user = location.state?.userInfo.user;
     const id = user.id;
     const [fullbody, setFullbody] = useState('');
@@ -58,7 +56,6 @@ function FittingRoom() {
 
     const openUploadModal = () => {
         setUploadModalOpen(true);
-        // setLoadingModalOpen(false);
     };
 
     const closeUploadModal = () => {
@@ -70,7 +67,6 @@ function FittingRoom() {
     }
 
     const checkBoxClicked = (garment) => {
-        // console.log('garment: ' + garment + ' clothes_id: ' + clothesId);
         if (garment === 'top') {
             if (top === clothesId) {
                 setTop(-1);
@@ -88,13 +84,7 @@ function FittingRoom() {
                 setBottomCheck(true);
             }
         }
-
-        // console.log('top: ' + top + ' bottom: ' + bottom);
     }
-
-
-    // const navigate = useNavigate();
-
 
     const clothesList = useCallback(
         async (userId) => {
@@ -115,8 +105,6 @@ function FittingRoom() {
 
     if (user.full_body_img_path === null) {
         alert("Please Save Your Profile");
-        // window.location.replace()
-        // navigate("/mypage", {state: {userInfo: location.state?.userInfo}});
     }
 
     useEffect(() => {
@@ -168,7 +156,6 @@ function FittingRoom() {
     );
 
     const tryOnBtnClicked = () => {
-        // console.log('id: ' + id + ' top: ' + top + ' bottom: ' + bottom);
         setLoadingModalOpen(true);
         tryon(id, top, bottom);
     };
@@ -176,8 +163,9 @@ function FittingRoom() {
     return (
         <>
             <Logo />
-            <LoadingModal openState={loadingModalOpen} close={closeLoadingModal} text={'Try On'} loading={loading}/>
+            <LoadingModal openState={loadingModalOpen} close={closeLoadingModal} text={'Try On'} loading={loading} />
             <div className="container-xxl text-end">
+                <a href={"/"} className="btn btn-primary me-2">Back to home</a>
                 <button className="btn btn-outline-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
                 <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user} />
                 <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
@@ -189,13 +177,10 @@ function FittingRoom() {
                         <img className="d-block card-img-size" ref={downRef}
                             src={fullbody} alt="" viewBox="0 0 70 42" width="300" />
                         <div className="demo-vertical-spacing btn d-flex demo-inline-spacing">
-                            {/* <Button text="Try On" path="/" /> */}
-                            {/* <li className="menu-item"> */}
                             <button className="btn btn-primary d-grid w-100" type="submit"
                                 onClick={tryOnBtnClicked}>
                                 Try On
                             </button>
-                            {/* </li> */}
                             <button className="btn btn-icon btn-outline-primary"
                                 onClick={downloadImage}>
                                 <BiSave />

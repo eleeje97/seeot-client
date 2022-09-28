@@ -1,13 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
-import { seeotApi } from "../../Api";
-
 const LoadingModal = ({ openState, close, text, loading}) => {
-
-    // const [loading, setLoading] = useState(false);
-
-    // useEffect(() => {
-    //     setLoading(true);
-    // }, []);
 
     return (
         <div className={openState ? "modal fade show" : "modal fade"}
@@ -35,7 +26,6 @@ const LoadingModal = ({ openState, close, text, loading}) => {
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary" onClick={close}
                             style={loading ? { display: 'none' } : {}}>
-                            {/* style={{ display: 'none' }} > */}
                             OK
                         </button>
                     </div>

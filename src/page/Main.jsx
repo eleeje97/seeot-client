@@ -3,6 +3,7 @@ import RecommendationItem from "../components/common/RecommendationItem";
 import SideBar from "../components/SideBar";
 import { HiOutlineMenu } from "react-icons/hi";
 import { seeotApi } from "../Api";
+import { AiOutlineReload } from "react-icons/ai"
 
 function Main() {
   const [user, setUser] = useState({});
@@ -44,10 +45,9 @@ function Main() {
     setSideBarOpen(true);
   }
 
-  // const closeSideBar = () => {
-  //   setSideBarOpen(false);
-  // }
-
+  const reload = () => {
+    window.location.reload();
+  }
 
   useEffect(() => {
     setUser({});
@@ -95,12 +95,22 @@ function Main() {
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
                 <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
-                  <RecommendationItem img_src={recommendationImages[0]} 
+                  <RecommendationItem img_src={recommendationImages[0]}
                     userId={id} userInfo={user} season={season} />
-                  <RecommendationItem img_src={recommendationImages[1]} 
+                  <RecommendationItem img_src={recommendationImages[1]}
                     userId={id} userInfo={user} season={season} />
-                  <RecommendationItem img_src={recommendationImages[2]} 
+                  <RecommendationItem img_src={recommendationImages[2]}
                     userId={id} userInfo={user} season={season} />
+                  <RecommendationItem img_src={recommendationImages[3]}
+                    userId={id} userInfo={user} season={season} />
+                  <RecommendationItem img_src={recommendationImages[4]}
+                    userId={id} userInfo={user} season={season} />
+                  <RecommendationItem img_src={recommendationImages[5]}
+                    userId={id} userInfo={user} season={season} />
+                </div>
+                <div className="btn text-end me-5">
+                  <button className="btn btn-icon btn-outline-primary"
+                    onClick={reload}><AiOutlineReload /></button>
                 </div>
               </div>
               <div className="content-backdrop fade"></div>

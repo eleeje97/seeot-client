@@ -14,11 +14,7 @@ function SideBar({user, closeSideBar}) {
   const [loginText, setLoginText] = useState('Sign In');
   const [loginPath, setLoginPath] = useState('/login');
 
-  // const userInfo = props.user;
-  // const closeSideBar = props.closeSideBar;
   const userInfo = user;
-  // console.log(user);
-  // console.log(closeSideBar);
   const userId = userInfo.id;
 
 
@@ -45,10 +41,10 @@ function SideBar({user, closeSideBar}) {
           <img
             src={Logo}
             viewBox="0 0 50 42"
-            width="50"
+            width="70"
             alt=""
           />
-          <span className="app-brand-text demo menu-text fw-bolder ms-2">
+          <span className="app-brand-logo demo menu-text fw-bolder ms-2">
             See옷
           </span>
         </a>

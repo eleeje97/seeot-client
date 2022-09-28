@@ -4,6 +4,7 @@ import Upload from "../images/mypage.png";
 import { useLocation } from "react-router-dom";
 import { seeotApi } from "../Api";
 import LoadingModal from "../components/common/LoadingModal";
+import FooterMypage from "../components/FooterMypage";
 
 function Mypage() {
     const location = useLocation();
@@ -14,7 +15,7 @@ function Mypage() {
     const [fullbody, setFullbody] = useState(Upload);
     const [loadingModalOpen, setLoadingModalOpen] = useState(false);
     const [loading, setLoading] = useState(true);
-    
+
     const closeModal = () => {
         setLoadingModalOpen(false);
     }
@@ -67,7 +68,11 @@ function Mypage() {
     return (
         <>
             <Logo />
-            <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading}/>
+            <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading} />
+            <div className="text-end">
+                <a href={"/"} className="btn btn-primary me-2">Back to home</a>
+                <a href={"/fittingroom"} className="btn btn-outline-primary me-4">Fitting Room</a>
+            </div>
             <div className="demo-vertical-spacing card-body">
                 <div className="card demo-vertical-spacing btn">
                     <div className="d-flex align-items-start align-items-sm-center gap-4">
@@ -109,6 +114,7 @@ function Mypage() {
                     </div>
                 </div>
             </div>
+            <FooterMypage />
         </>
     )
 }

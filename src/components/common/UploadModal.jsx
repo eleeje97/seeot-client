@@ -122,7 +122,6 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             </div>
                         </div>
                         <div className="col-md" style={uploaded ? {} : { display: 'none' }}>
-                            {/* <div className="col-md"> */}
                             <div className="col mb-3">
                                 <input name="season" className="form-check-input" type="radio" value="Spring_fall" id="Spring_fall"
                                     checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
@@ -145,13 +144,11 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             style={loading ? {} : { display: 'none' }}
                             role="status"></div>
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}
-                            // style={loading ? { display: 'none' } : {}}>
                             style={{ display: 'none' }} >
                             Close
                         </button>
                         <button type="button" className="btn btn-primary" onClick={btnClicked}
                             style={loading ? { display: 'none' } : {}}>
-                            {/* style={{ display: 'none' }} > */}
                             {uploaded ? 'Save' : 'Upload'}
                         </button>
                     </div>

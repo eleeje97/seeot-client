@@ -3,26 +3,21 @@ import Logo from "../../images/logo.png";
 
 function LogoSeeot() {
     return (
-        <>
-            < div
-                // id="layout-menu"
-                className="menu-vertical menu bg-menu-theme mb-fit"
-            >
-                <div className="app-brand demo">
-                    <a href={"/"} className="app-brand-link">
-                        <img
-                            src={Logo}
-                            viewBox="0 0 50 42"
-                            width="50"
-                            alt=""
-                        />
-                        <span className="app-brand-text demo menu-text fw-bolder ms-2">
-                            See옷
-                        </span>
-                    </a>
-                </div>
-            </div >
-        </>
+        < div className="menu-vertical menu mb-fit">
+            <div className="demo">
+                <a href={"/"} className="app-brand-link">
+                    <img
+                        src={Logo}
+                        viewBox="0 0 50 42"
+                        width="85"
+                        alt=""
+                    />
+                    <span className="app-brand-logo demo menu-text fw-bolder ms-2">
+                        See옷
+                    </span>
+                </a>
+            </div>
+        </div >
     )
 }
 

@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-
-const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothes_id }) => {
+const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick }) => {
 
     return (
         <div className={openState ? "modal fade show" : "modal fade"}
@@ -38,7 +36,6 @@ const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick, clothe
                                 onChange={() => onClick('bottom')} />
                             <label class="form-check-label" htmlFor="bottom"> 하의 </label>
                         </div>
-
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}>

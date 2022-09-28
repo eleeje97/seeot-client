@@ -26,10 +26,8 @@ function RecommendationItem({img_src, userId, userInfo, season}) {
       <div href="#" className="card-img-top card-img-bottom">
         <img className="card-img-top reco-img-size" src={img_src} alt="Card image cap" />
         <div className="btn demo-inline-spacing" >
-          {/* <Button text="피팅룸으로 가기" path={"/fittingroom"} /> */}
-
           <li className="menu-item">
-            <Link to={userId ? { pathname: "fittingroom" } : { pathname: "login" }} state={{ userInfo: { 'user': userInfo } }} className="menu-link" >
+            <Link to={userId ? { pathname: "/" } : { pathname: "login" }} state={{ userInfo: { 'user': userInfo } }} className="menu-link" >
               <button className="btn btn-primary d-grid w-100" type="submit"
                 onClick={btnClicked}>
                   See옷 Clothes에 담기
