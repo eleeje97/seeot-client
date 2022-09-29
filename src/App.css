@@ -7460,6 +7460,16 @@ button:focus {
   right: 300px;
 }
 
+.img-top-border {
+  border: 3px solid #71dd37;
+  border-radius: 10px;
+}
+
+.img-bottom-border {
+  border: 3px solid #ffab00;
+  border-radius: 10px;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
