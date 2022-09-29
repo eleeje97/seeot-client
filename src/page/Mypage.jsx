@@ -72,53 +72,65 @@ function Mypage() {
 
     return (
         <>
-            <Logo />
             <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading} />
-            <div className="text-end">
-                <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
-                <Link to={{ pathname: "/fittingroom" }} state={{ userInfo: { 'user': user } }}>
-                    <button className="btn btn-outline-primary me-4" type="submit">
-                        <BiCloset />&nbsp;Fitting Room
-                    </button>
-                </Link>
+            <div className="card-body">
+                <Logo />
+                <div style={{ float: 'right' }}>
+                    <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
+                    <Link to={{ pathname: "/fittingroom" }} state={{ userInfo: { 'user': user } }}>
+                        <button className="btn btn-outline-primary me-4" type="submit">
+                            <BiCloset />&nbsp;Fitting Room
+                        </button>
+                    </Link>
+                </div>
             </div>
+
             <div className="demo-vertical-spacing card-body">
-                <div className="card demo-vertical-spacing btn">
+                <div className="card demo-vertical-spacing">
                     <div className="d-flex align-items-start align-items-sm-center gap-4">
                         <div className="btn">
                             <img src={fullbody} className="card-img-top card-img-bottom card-img-size" />
                         </div>
-                        <div className="me-2">
-                            <div className="mb-3 col-md-2">
-                                <label htmlFor="Name" className="form-label">Name</label>
-                                <a className="btn">{nickname}</a>
+
+                        <div className="row">
+                            <div className="mb-3 col-md-6">
+                                <label htmlFor="name" class="form-label">Name</label>
+                                <input className="form-control" type="text" id="name" name="name" value={nickname}></input>
                             </div>
-                            <div className="mb-3 col-md-2">
-                                <label htmlFor="firstName" className="form-label">Gender</label>
+
+                            <div className="mb-3 col-md-6">
+                            </div>
+
+                            <div className="mb-3 col-md-6">
+                                <label htmlFor="gender" className="form-label">Gender</label>
                                 <select id="gender" className="select2 form-select" defaultValue={gender}>
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                                 </select>
                             </div>
-                            <a className="btn">
-                                불량한 예시들(ex 앉아있는 사진, 뒷모습, 휴대폰나옴)
-                            </a>
-                            <div className="row row-cols-md-3 g-4">
-                                <img className="" src={First} alt="Card image cap"></img>
-                                <img className="" src={Second}></img>
-                                <img className="" src={Third}></img>
+
+                            <div className="mb-3 col-md-6">
                             </div>
-                            {/* <a className="btn">
-                                    좋은 예시들(ex 반듯이 서있는 사진, 배경 없음)
-                                </a>
-                            <div className="row row-cols-1 row-cols-md-3 g-4">
-                                <img className="" src={First}></img>
-                                <img className="" src={Second}></img>
-                                <img className="" src={Third}></img>
-                            </div> */}
+
+
+                            <div className="mb-3 col-md-6">
+                                <label htmlFor="name" class="form-label">
+                                    배경이 깔끔한 정자세의 전신사진을 올려주세요. <br />
+                                    아래와 같은 사진들은 피팅의 결과물이 좋지 않을 수 있습니다. <br />
+                                    (ex. 앉아있는 사진, 휴대폰과 같은 소지품, 옆모습, 뒷모습 등)
+                                    </label>
+                                <div className="row row-cols-md-3 g-4">
+                                    <img className="" src={First}></img>
+                                    <img className="" src={Second}></img>
+                                    <img className="" src={Third}></img>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="d-flex">
+
+
+
+                    <div className="card-body">
                         <label htmlFor="file" className="btn btn-primary me-2" tabIndex="0">
                             <span className="d-none d-sm-block">Upload new photo</span>
                             <i className="bx bx-upload d-block d-sm-none"></i>
@@ -138,9 +150,9 @@ function Mypage() {
                             <i className="bx bx-reset d-block d-sm-none"></i>
                             <span className="d-none d-sm-block">Reset</span>
                         </button>
-                    </div>
-                    <div className="text-end">
-                        <button type="submit" className="btn btn-primary me-2 " onClick={saveProfile}>Save changes</button>
+
+                        <button type="submit" className="btn btn-primary me-2 " onClick={saveProfile}
+                            style={{ float: 'right' }}>Save changes</button>
                         <LoadingModal />
                     </div>
                 </div>
