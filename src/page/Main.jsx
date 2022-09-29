@@ -77,7 +77,7 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" onClick={openSideBar}>
+                <a className="nav-item nav-link px-0 me-xl-4" onChange={openSideBar}>
                   <HiOutlineMenu />
                 </a>
               </div>
@@ -86,7 +86,7 @@ function Main() {
               </h5>
               <div className="d-flex align-items-center" id="navbar-collapse">
                 <ul className="navbar-nav flex-row align-items-center ms-auto" inputMode="submit">
-                  <input class="form-control me-2" type="date" min="2022-09-21" max="2022-10-02"
+                  <input className="form-control me-2" type="date" min="2022-09-21" max="2022-10-02"
                          value="today"></input>
                   <select id="date" className="select2 form-select me-2">
                     <option value="Seoul">서울</option>
@@ -97,13 +97,13 @@ function Main() {
                     <option value="Tokyo">도쿄</option>
                     <option value="Moscow">모스크바</option>
                   </select>
-                  <button type="button" class="btn btn-outline-primary"><BiSave /></button>
+                  <button type="button" className="btn btn-outline-primary"><BiSave /></button>
                 </ul>
               </div>
             </nav>
             <div className="btn text-end me-5 scroll-top">
               <button className="btn btn-icon btn-outline-primary"
-                onClick={reload}><AiOutlineReload /></button>
+                onChange={reload}><AiOutlineReload /></button>
             </div>
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">

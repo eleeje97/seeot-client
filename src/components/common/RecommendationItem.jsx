@@ -9,7 +9,6 @@ function RecommendationItem({img_src, userId, userInfo, season}) {
       await seeotApi
         .recommendationSave(userId, imgPath, season)
         .then((res) => {
-          console.log(JSON.stringify(res));
         })
         .catch(function (e) {
           console.log(e);

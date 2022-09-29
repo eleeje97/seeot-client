@@ -12,7 +12,7 @@ function Clothes({ modalOpen, openModal, closeModal, img_src, topCheck, bottomCh
 
       <div className="col">
         <div href="#" className="card-img-top card-img-bottom">
-          <img class="card-img-top card-img-bottom " src={img_src} alt="Card image cap"
+          <img className="card-img-top card-img-bottom " src={img_src} alt="Card image cap"
             onClick={() => {
               openModal(clothes_id);
               setId(clothes_id);

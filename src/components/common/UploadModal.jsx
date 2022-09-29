@@ -124,17 +124,17 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         <div className="col-md" style={uploaded ? {} : { display: 'none' }}>
                             <div className="col mb-3">
                                 <input name="season" className="form-check-input" type="radio" value="Spring_fall" id="Spring_fall"
-                                    checked={spring ? true : false} onClick={() => radioBtnClicked('Spring')} />
+                                    checked={spring ? true : false} onChange={() => radioBtnClicked('Spring')} />
                                 <label htmlFor="nameLarge" className="form-label">&nbsp;spring & fall</label>
                             </div>
                             <div className="col mb-3">
                                 <input name="season" className="form-check-input" type="radio" value="Summer" id="Summer"
-                                    checked={summer ? true : false} onClick={() => radioBtnClicked('Summer')} />
+                                    checked={summer ? true : false} onChange={() => radioBtnClicked('Summer')} />
                                 <label htmlFor="nameLarge" className="form-label">&nbsp;summer</label>
                             </div>
                             <div className="col mb-3">
                                 <input name="season" className="form-check-input" type="radio" value="Winter" id="Winter"
-                                    checked={winter ? true : false} onClick={() => radioBtnClicked('Winter')} />
+                                    checked={winter ? true : false} onChange={() => radioBtnClicked('Winter')} />
                                 <label htmlFor="nameLarge" className="form-label">&nbsp;winter</label>
                             </div>
                         </div>
@@ -143,11 +143,11 @@ const UploadModal = ({ openState, close, userInfo }) => {
                         <div className="spinner-border spinner-border-lg text-primary "
                             style={loading ? {} : { display: 'none' }}
                             role="status"></div>
-                        <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onClick={close}
+                        <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal" onChange={close}
                             style={{ display: 'none' }} >
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary" onClick={btnClicked}
+                        <button type="button" className="btn btn-primary" onChange={btnClicked}
                             style={loading ? { display: 'none' } : {}}>
                             {uploaded ? 'Save' : 'Upload'}
                         </button>

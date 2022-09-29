@@ -30,11 +30,11 @@ const FittingModal = ({ openState, close, topCheck, bottomCheck, onClick }) => {
                                 }} />
                             <label className="form-check-label" htmlFor="top"> 상의 </label>
                         </div>
-                        <div class="form-check mt-3">
-                            <input class="form-check-input" type="checkbox" value="bottom" id="bottom"
+                        <div className="form-check mt-3">
+                            <input className="form-check-input" type="checkbox" value="bottom" id="bottom"
                                 checked={bottomCheck ? true : false}
                                 onChange={() => onClick('bottom')} />
-                            <label class="form-check-label" htmlFor="bottom"> 하의 </label>
+                            <label className="form-check-label" htmlFor="bottom"> 하의 </label>
                         </div>
                     </div>
                     <div className="modal-footer">
