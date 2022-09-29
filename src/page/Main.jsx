@@ -3,7 +3,7 @@ import RecommendationItem from "../components/common/RecommendationItem";
 import SideBar from "../components/SideBar";
 import { HiOutlineMenu } from "react-icons/hi";
 import { AiOutlineReload } from "react-icons/ai"
-import { BiSave } from 'react-icons/bi';
+import { BiSave, BiSearch } from 'react-icons/bi';
 import { seeotApi } from "../Api";
 
 function Main() {
@@ -29,9 +29,9 @@ function Main() {
   );
 
   const recommendation = useCallback(
-    async (userId) => {
+    async (userId, city, date) => {
       await seeotApi
-        .recommendation(userId)
+        .recommendation(userId, city, date)
         .then((res) => {
           setRecommendationImages(res.data.clothes);
           setSeason(res.data.season);
@@ -57,12 +57,37 @@ function Main() {
     if (userId) {
       getUserInfo(userId);
     } else {
-      setUser({})
+      setUser({});
     }
 
-    recommendation(userId);
 
+    const calendar = document.getElementById('recDate');
+
+    // 한국 시간대를 사용하기 위한 offset
+    let date = new Date();
+    let offset = date.getTimezoneOffset() * 60000;
+
+    // 현재 날짜
+    let minDate = new Date(date.getTime() - offset);
+    calendar.value = minDate.toISOString().substring(0, 10);
+    calendar.setAttribute('min', minDate.toISOString().substring(0, 10));
+
+    // 13일 후 날짜
+    let maxDate = new Date(minDate.setDate(minDate.getDate() + 13));
+    calendar.setAttribute('max', maxDate.toISOString().substring(0, 10));
+
+
+    recommendation(userId, 'Seoul', minDate.toISOString().substring(0, 10));
   }, []);
+
+
+  const onRecBtnClicked = () => {
+    const calendar = document.getElementById('recDate');
+    const region = document.getElementById('recRegion');
+    console.log(calendar.value);
+    console.log(region.value);
+    recommendation(id, region.value, calendar.value);
+  };
 
   return (
     <div>
@@ -77,18 +102,18 @@ function Main() {
               id="layout-navbar"
             >
               <div className="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-                <a className="nav-item nav-link px-0 me-xl-4" onChange={openSideBar}>
+                <a className="nav-item nav-link px-0 me-xl-4" onClick={openSideBar}>
                   <HiOutlineMenu />
                 </a>
               </div>
               <h5 className="navbar-nav align-items-center me-auto">
-                추천 받을 날짜와 도시를 선택해 주세요(최대 10일까지 가능)
+                추천 받을 날짜와 도시를 선택해 주세요
               </h5>
               <div className="d-flex align-items-center" id="navbar-collapse">
                 <ul className="navbar-nav flex-row align-items-center ms-auto" inputMode="submit">
-                  <input className="form-control me-2" type="date" min="2022-09-21" max="2022-10-02"
-                         value="today"></input>
-                  <select id="date" className="select2 form-select me-2">
+                  <input id="recDate" className="form-control me-2" type="date"
+                    style={{width: '300px'}} ></input>
+                  <select id="recRegion" className="select2 form-select me-2">
                     <option value="Seoul">서울</option>
                     <option value="Incheon">인천</option>
                     <option value="Pusan">부산</option>
@@ -97,13 +122,14 @@ function Main() {
                     <option value="Tokyo">도쿄</option>
                     <option value="Moscow">모스크바</option>
                   </select>
-                  <button type="button" className="btn btn-outline-primary"><BiSave /></button>
+                  <button type="button" className="btn btn-outline-primary"
+                    onClick={onRecBtnClicked}><BiSearch /></button>
                 </ul>
               </div>
             </nav>
             <div className="btn text-end me-5 scroll-top">
               <button className="btn btn-icon btn-outline-primary"
-                onChange={reload}><AiOutlineReload /></button>
+                onClick={reload}><AiOutlineReload /></button>
             </div>
             <div className="content-wrapper">
               <div className="container-xxl flex-grow-1 container-p-y">
