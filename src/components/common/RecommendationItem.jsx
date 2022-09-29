@@ -9,6 +9,7 @@ function RecommendationItem({img_src, userId, userInfo, season}) {
       await seeotApi
         .recommendationSave(userId, imgPath, season)
         .then((res) => {
+          alert('See옷 Clothes에 옷이 담겼습니다.')
         })
         .catch(function (e) {
           console.log(e);

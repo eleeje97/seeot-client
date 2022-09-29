@@ -106,7 +106,7 @@ function FittingRoom() {
     );
 
     if (user.full_body_img_path === null) {
-        alert("Please Save Your Profile");
+        alert("Please Save Your Profile First");
     }
 
     useEffect(() => {
