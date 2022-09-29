@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import Logo from "../components/common/LogoSeeot"
 import Upload from "../images/mypage.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { seeotApi } from "../Api";
 import LoadingModal from "../components/common/LoadingModal";
 import FooterMypage from "../components/FooterMypage";
@@ -76,7 +76,11 @@ function Mypage() {
             <LoadingModal openState={loadingModalOpen} close={closeModal} text={'Update Profile'} loading={loading} />
             <div className="text-end">
                 <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
-                <a href={"/fittingroom"} className="btn btn-outline-primary me-4"><BiCloset />&nbsp;Fitting Room</a>
+                <Link to={{ pathname: "/fittingroom" }} state={{ userInfo: { 'user': user } }}>
+                    <button className="btn btn-outline-primary me-4" type="submit">
+                        <BiCloset />&nbsp;Fitting Room
+                    </button>
+                </Link>
             </div>
             <div className="demo-vertical-spacing card-body">
                 <div className="card demo-vertical-spacing btn">
@@ -84,24 +88,38 @@ function Mypage() {
                         <div className="btn">
                             <img src={fullbody} className="card-img-top card-img-bottom card-img-size" />
                         </div>
-                        <div className="button-wrapper me-2">
-                            <a className="btn">{nickname}</a>
-                            <select id="gender" className="select2 form-select" defaultValue={gender}>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div className="row row-cols-1 row-cols-md-3 g-4">
-                            <img src={First}></img>
-                            <img src={Second}></img>
-                            <img src={Third}></img>
-                            <a className="">
+                        <div className="me-2">
+                            <div className="mb-3 col-md-2">
+                                <label htmlFor="Name" className="form-label">Name</label>
+                                <a className="btn">{nickname}</a>
+                            </div>
+                            <div className="mb-3 col-md-2">
+                                <label htmlFor="firstName" className="form-label">Gender</label>
+                                <select id="gender" className="select2 form-select" defaultValue={gender}>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <a className="btn">
                                 불량한 예시들(ex 앉아있는 사진, 뒷모습, 휴대폰나옴)
                             </a>
+                            <div className="row row-cols-md-3 g-4">
+                                <img className="" src={First} alt="Card image cap"></img>
+                                <img className="" src={Second}></img>
+                                <img className="" src={Third}></img>
+                            </div>
+                            {/* <a className="btn">
+                                    좋은 예시들(ex 반듯이 서있는 사진, 배경 없음)
+                                </a>
+                            <div className="row row-cols-1 row-cols-md-3 g-4">
+                                <img className="" src={First}></img>
+                                <img className="" src={Second}></img>
+                                <img className="" src={Third}></img>
+                            </div> */}
                         </div>
                     </div>
                     <div className="d-flex">
-                        <label for="file" className="btn btn-primary me-2" tabindex="0">
+                        <label htmlFor="file" className="btn btn-primary me-2" tabIndex="0">
                             <span className="d-none d-sm-block">Upload new photo</span>
                             <i className="bx bx-upload d-block d-sm-none"></i>
                             <input

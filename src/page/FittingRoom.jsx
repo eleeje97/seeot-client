@@ -175,12 +175,11 @@ function FittingRoom() {
             <LoadingModal openState={loadingModalOpen} close={closeLoadingModal} text={'Try On'} loading={loading} />
             <div className="container-xxl text-end">
                 <a href={"/"} className="btn btn-outline-primary me-2"><FaHome />&nbsp;Home</a>
-                <a href="/mypage" className="btn btn-outline-primary me-2"><FiUser />&nbsp;Mypage</a>
-                {/* <Link to={{ pathname: "/mypage" }}>
+                <Link to={{ pathname: "/mypage" }} state={{ userInfo: { 'user': user } }}>
                     <button className="btn btn-outline-primary me-2" type="submit">
                         <FiUser />&nbsp;Mypage
                     </button>
-                </Link> */}
+                </Link>
                 <button className="btn btn-primary" onClick={openUploadModal}><BiUpload /> Upload</button>
                 <UploadModal openState={uploadModalOpen} close={closeUploadModal} userInfo={user} />
                 <div className={uploadModalOpen ? "modal-backdrop fade show" : ""}></div>
