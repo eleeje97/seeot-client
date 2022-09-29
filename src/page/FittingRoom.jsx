@@ -240,7 +240,9 @@ function FittingRoom() {
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         {myClothes.map((clothes) => (
                                             <Clothes
-                                                border={'top'}
+                                                border={top === clothes.id
+                                                    ? bottom === clothes.id ? 'both' : 'top'
+                                                    : bottom === clothes.id ? 'bottom' : 'none'}
                                                 key={clothes.origin_img_path}
                                                 modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
                                                 img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}
@@ -257,7 +259,9 @@ function FittingRoom() {
                                     <div className="row row-cols-1 row-cols-md-3 g-4 mb-5">
                                         {seeotClothes.map((clothes) => (
                                             <Clothes
-                                                border={'bottom'}
+                                                border={top === clothes.id
+                                                            ? bottom === clothes.id ? 'both' : 'top'
+                                                            : bottom === clothes.id ? 'bottom' : 'none'}
                                                 key={clothes.origin_img_path}
                                                 modalOpen={fittingModalOpen} openModal={openFittingModal} closeModal={closeFittingModal}
                                                 img_src={'http://210.106.99.80:5050/' + clothes.origin_img_path}

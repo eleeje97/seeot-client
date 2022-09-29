@@ -7461,12 +7461,17 @@ button:focus {
 }
 
 .img-top-border {
-  border: 3px solid #71dd37;
+  border: 3px solid #EB5032;
   border-radius: 10px;
 }
 
 .img-bottom-border {
-  border: 3px solid #ffab00;
+  border: 3px solid #6A6CF6;
+  border-radius: 10px;
+}
+
+.img-both-border {
+  border: 3px solid #AA5E94;
   border-radius: 10px;
 }
 

@@ -13,7 +13,8 @@ function Clothes({ border, modalOpen, openModal, closeModal, img_src, topCheck, 
       <div className="col">
         <div href="#" className="card-img-top card-img-bottom">
           <img className={border === 'top' ? "card-img-top card-img-bottom img-top-border" : 
-                            border === 'bottom' ? "card-img-top card-img-bottom img-bottom-border" : "card-img-top card-img-bottom"}
+                            border === 'bottom' ? "card-img-top card-img-bottom img-bottom-border" : 
+                              border === 'both' ? "card-img-top card-img-bottom img-both-border" : "card-img-top card-img-bottom"}
                src={img_src} alt="Card image cap"
             onClick={() => {
               openModal(clothes_id);
