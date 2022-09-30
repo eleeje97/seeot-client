@@ -147,7 +147,7 @@ const UploadModal = ({ openState, close, userInfo }) => {
                             style={{ display: 'none' }} >
                             Close
                         </button>
-                        <button type="button" className="btn btn-primary" onChange={btnClicked}
+                        <button type="button" className="btn btn-primary" onClick={btnClicked}
                             style={loading ? { display: 'none' } : {}}>
                             {uploaded ? 'Save' : 'Upload'}
                         </button>
